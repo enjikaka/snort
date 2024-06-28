@@ -1,5 +1,5 @@
 {
-  "name": "@snort/system",
+  "name": "@enjikaka/snort-system",
   "version": "1.3.7",
   "description": "Snort nostr system package",
   "type": "module",
