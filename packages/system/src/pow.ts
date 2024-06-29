@@ -1,6 +1,6 @@
-import { v4 as uuid } from "uuid";
-import { NostrEvent } from "./nostr";
-import { PowWorkerMessage } from "./pow-worker";
+import { v4 as uuid } from "npm:uuid@9.0.1";
+import { NostrEvent } from "./nostr.ts";
+import { PowWorkerMessage } from "./pow-worker.ts";
 
 export interface PowMiner {
   minePow(ev: NostrEvent, target: number): Promise<NostrEvent>;

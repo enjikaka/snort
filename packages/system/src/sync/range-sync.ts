@@ -1,7 +1,7 @@
-import { unixNow } from "@snort/shared";
-import EventEmitter from "eventemitter3";
-import { ReqFilter, RequestBuilder, SystemInterface, TaggedNostrEvent } from "..";
-import { v4 as uuid } from "uuid";
+import { unixNow } from "npm:@snort/shared@1.0.16";
+import { ReqFilter, RequestBuilder, SystemInterface, TaggedNostrEvent } from "../index.ts";
+import { v4 as uuid } from "npm:uuid@9.0.1";
+import { EventEmitter } from "npm:eventemitter3@5.0.1";
 
 /**
  * When nostr was created

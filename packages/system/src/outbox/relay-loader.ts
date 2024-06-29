@@ -1,8 +1,8 @@
-import { EventKind, RequestBuilder, TaggedNostrEvent, UsersRelays } from "..";
-import { unixNowMs } from "@snort/shared";
-import { RelayListCacheExpire } from "../const";
-import { BackgroundLoader } from "../background-loader";
-import { parseRelaysFromKind } from ".";
+import { EventKind, RequestBuilder, TaggedNostrEvent, UsersRelays } from "../index.ts";
+import { unixNowMs } from "npm:@snort/shared@1.0.16";
+import { RelayListCacheExpire } from "../const.ts";
+import { BackgroundLoader } from "../background-loader.ts";
+import { parseRelaysFromKind } from "./index.ts";
 
 export class RelayMetadataLoader extends BackgroundLoader<UsersRelays> {
   override name(): string {

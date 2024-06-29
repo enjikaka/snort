@@ -1,4 +1,4 @@
-import { bech32ToHex, hexToBech32, isHex, removeUndefined, unwrap } from "@snort/shared";
+import { bech32ToHex, hexToBech32, isHex, removeUndefined, unwrap } from "npm:@snort/shared@1.0.16";
 import {
   decodeTLV,
   encodeTLV,
@@ -9,8 +9,8 @@ import {
   Tag,
   TaggedNostrEvent,
   TLVEntryType,
-} from ".";
-import { findTag } from "./utils";
+} from "./index.ts";
+import { findTag } from "./utils.ts";
 
 /**
  * An object which can be stored in a nostr event as a tag

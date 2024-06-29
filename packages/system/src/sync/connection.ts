@@ -1,9 +1,10 @@
-import { Connection, SyncCommand } from "../connection";
-import { EventExt, EventType } from "../event-ext";
-import { NoteCollection } from "../note-collection";
-import { RangeSync } from "./range-sync";
-import { NegentropyFlow } from "../negentropy/negentropy-flow";
-import { SystemConfig } from "../system";
+import { Connection, SyncCommand } from "../connection.ts";
+import { EventExt, EventType } from "../event-ext.ts";
+import { NoteCollection } from "../note-collection.ts";
+import { RangeSync } from "./range-sync.ts";
+import { NegentropyFlow } from "../negentropy/negentropy-flow.ts";
+import { SystemConfig } from "../system.ts";
+import { EventEmitter } from "npm:eventemitter3@5.0.1";
 
 export interface ConnectionSyncModule {
   sync: (c: Connection, item: SyncCommand, cb?: () => void) => void;

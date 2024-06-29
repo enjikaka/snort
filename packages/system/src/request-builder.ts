@@ -1,11 +1,11 @@
 import debug from "debug";
-import { v4 as uuid } from "uuid";
-import { appendDedupe, dedupe, removeUndefined, sanitizeRelayUrl, unixNowMs, unwrap } from "@snort/shared";
+import { v4 as uuid } from "npm:uuid@9.0.1";
+import { appendDedupe, dedupe, removeUndefined, sanitizeRelayUrl, unixNowMs, unwrap } from "npm:@snort/shared@1.0.16";
 
-import EventKind from "./event-kind";
-import { FlatReqFilter, NostrLink, NostrPrefix, SystemInterface, ToNostrEventTag } from ".";
-import { ReqFilter, u256, HexKey, TaggedNostrEvent } from "./nostr";
-import { RequestRouter } from "./request-router";
+import EventKind from "./event-kind.ts";
+import { FlatReqFilter, NostrLink, NostrPrefix, SystemInterface, ToNostrEventTag } from "./index.ts";
+import { ReqFilter, u256, HexKey, TaggedNostrEvent } from "./nostr.ts";
+import { RequestRouter } from "./request-router.ts";
 
 /**
  * A built REQ filter ready for sending to System

@@ -1,6 +1,6 @@
-import { CachedTable, unixNowMs } from "@snort/shared";
-import { RelayMetrics } from "./cache";
-import { TraceReport } from "./query";
+import { CachedTable, unixNowMs } from "npm:@snort/shared@1.0.16";
+import { RelayMetrics } from "./cache/index.ts";
+import { TraceReport } from "./query.ts";
 
 export class RelayMetricHandler {
   readonly #cache: CachedTable<RelayMetrics>;

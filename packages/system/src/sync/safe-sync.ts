@@ -1,4 +1,3 @@
-import EventEmitter from "eventemitter3";
 import {
   EventExt,
   EventSigner,
@@ -8,9 +7,10 @@ import {
   NotSignedNostrEvent,
   RequestBuilder,
   SystemInterface,
-} from "..";
-import { unixNow } from "@snort/shared";
-import debug from "debug";
+} from "../index.ts";
+import { unixNow } from "npm:@snort/shared@1.0.16";
+import debug from "npm:debug";
+import { EventEmitter } from "npm:eventemitter3@5.0.1";
 
 export interface SafeSyncEvents {
   change: () => void;

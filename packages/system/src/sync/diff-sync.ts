@@ -1,7 +1,7 @@
-import { EventEmitter } from "eventemitter3";
-import { EventBuilder, EventSigner, NostrEvent, NostrLink, NotSignedNostrEvent, SystemInterface, Tag } from "..";
-import { SafeSync, SafeSyncEvents } from "./safe-sync";
-import debug from "debug";
+import { EventBuilder, EventSigner, NostrEvent, NostrLink, NotSignedNostrEvent, SystemInterface, Tag } from "../index.ts";
+import { SafeSync, SafeSyncEvents } from "./safe-sync.ts";
+import debug from "npm:debug";
+import { EventEmitter } from "npm:eventemitter3@5.0.1";
 
 interface TagDiff {
   type: "add" | "remove" | "replace" | "update";

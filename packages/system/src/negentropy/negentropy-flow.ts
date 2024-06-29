@@ -1,10 +1,10 @@
-import { bytesToHex, hexToBytes } from "@noble/hashes/utils";
-import { Connection } from "../connection";
-import { ReqFilter, TaggedNostrEvent } from "../nostr";
-import { Negentropy } from "./negentropy";
-import { NegentropyStorageVector } from "./vector-storage";
-import debug from "debug";
-import { EventEmitter } from "eventemitter3";
+import { bytesToHex, hexToBytes } from "npm:@noble/hashes/utils";
+import { Connection } from "../connection.ts";
+import { ReqFilter, TaggedNostrEvent } from "../nostr.ts";
+import { Negentropy } from "./negentropy.ts";
+import { NegentropyStorageVector } from "./vector-storage.ts";
+import debug from "npm:debug";
+import { EventEmitter } from "npm:eventemitter3@5.0.1";
 
 export interface NegentropyFlowEvents {
   /**

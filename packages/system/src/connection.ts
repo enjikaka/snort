@@ -1,16 +1,16 @@
-import { v4 as uuid } from "uuid";
-import debug from "debug";
-import WebSocket from "isomorphic-ws";
-import { unixNowMs } from "@snort/shared";
-import { EventEmitter } from "eventemitter3";
+import { v4 as uuid } from "npm:uuid@9.0.1";
+import debug from "npm:debug";
+import { default as IsoWebSocket } from "npm:isomorphic-ws";
+import { unixNowMs } from "npm:@snort/shared@1.0.16";
+import { EventEmitter } from "npm:eventemitter3@5.0.1";
 
-import { DefaultConnectTimeout } from "./const";
-import { NostrEvent, OkResponse, ReqCommand, ReqFilter, TaggedNostrEvent, u256 } from "./nostr";
-import { RelayInfo } from "./relay-info";
-import EventKind from "./event-kind";
-import { EventExt } from "./event-ext";
-import { ConnectionType, ConnectionTypeEvents } from "./connection-pool";
-import { ConnectionSyncModule } from "./sync/connection";
+import { DefaultConnectTimeout } from "./const.ts";
+import { NostrEvent, OkResponse, ReqCommand, ReqFilter, TaggedNostrEvent, u256 } from "./nostr.ts";
+import { RelayInfo } from "./relay-info.ts";
+import EventKind from "./event-kind.ts";
+import { EventExt } from "./event-ext.ts";
+import { ConnectionType, ConnectionTypeEvents } from "./connection-pool.ts";
+import { ConnectionSyncModule } from "./sync/connection.ts";
 
 /**
  * Relay settings
@@ -147,9 +147,9 @@ export class Connection extends EventEmitter<ConnectionTypeEvents> implements Co
       }
       this.Socket = new WebSocket(this.address);
       this.Socket.onopen = () => this.#onOpen(wasReconnect);
-      this.Socket.onmessage = e => this.#onMessage(e);
-      this.Socket.onerror = e => this.#onError(e);
-      this.Socket.onclose = e => this.#onClose(e);
+      this.Socket.onmessage = e => this.#onMessage(e as unknown as IsoWebSocket.MessageEvent);
+      this.Socket.onerror = e => this.#onError(e as unknown as IsoWebSocket.ErrorEvent);
+      this.Socket.onclose = e => this.#onClose(e as unknown as IsoWebSocket.CloseEvent);
       if (awaitOpen) {
         await new Promise((resolve, reject) => {
           this.once("connected", resolve);
@@ -177,7 +177,7 @@ export class Connection extends EventEmitter<ConnectionTypeEvents> implements Co
     this.#sendPendingRaw();
   }
 
-  #onClose(e: WebSocket.CloseEvent) {
+  #onClose(e: IsoWebSocket.CloseEvent) {
     // if not explicity closed or closed after, start re-connect timer
     if (this.#wasUp && !this.#closing) {
       this.#downCount++;
@@ -195,7 +195,7 @@ export class Connection extends EventEmitter<ConnectionTypeEvents> implements Co
     this.#reset();
   }
 
-  #reconnectTimer(e: WebSocket.CloseEvent) {
+  #reconnectTimer(e: IsoWebSocket.CloseEvent) {
     if (this.ReconnectTimer) {
       clearTimeout(this.ReconnectTimer);
       this.ReconnectTimer = undefined;
@@ -212,7 +212,7 @@ export class Connection extends EventEmitter<ConnectionTypeEvents> implements Co
     }, this.ConnectTimeout);
   }
 
-  #onMessage(e: WebSocket.MessageEvent) {
+  #onMessage(e: IsoWebSocket.MessageEvent) {
     this.#activity = unixNowMs();
     if ((e.data as string).length > 0) {
       const msg = JSON.parse(e.data as string) as Array<string | NostrEvent | boolean>;
@@ -276,7 +276,7 @@ export class Connection extends EventEmitter<ConnectionTypeEvents> implements Co
     }
   }
 
-  #onError(e: WebSocket.Event) {
+  #onError(e: IsoWebSocket.Event) {
     this.#log("Error: %O", e);
     this.emit("change");
     this.emit("error");
@@ -478,7 +478,7 @@ export class Connection extends EventEmitter<ConnectionTypeEvents> implements Co
     }
     const json = JSON.stringify(obj);
     this.#activity = unixNowMs();
-    this.Socket.send(json);
+    this.Socket?.send(json);
     return true;
   }
 

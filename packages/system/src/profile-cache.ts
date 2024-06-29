@@ -1,8 +1,8 @@
-import { unixNowMs } from "@snort/shared";
-import { EventKind, TaggedNostrEvent, RequestBuilder } from ".";
-import { ProfileCacheExpire } from "./const";
-import { mapEventToProfile, CachedMetadata } from "./cache";
-import { BackgroundLoader } from "./background-loader";
+import { unixNowMs } from "npm:@snort/shared@1.0.16";
+import { EventKind, TaggedNostrEvent, RequestBuilder } from "./index.ts";
+import { ProfileCacheExpire } from "./const.ts";
+import { mapEventToProfile, CachedMetadata } from "./cache/index.ts";
+import { BackgroundLoader } from "./background-loader.ts";
 
 export class ProfileLoaderService extends BackgroundLoader<CachedMetadata> {
   override name(): string {

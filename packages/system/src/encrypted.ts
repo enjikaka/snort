@@ -1,9 +1,9 @@
-import { scryptAsync } from "@noble/hashes/scrypt";
-import { sha256 } from "@noble/hashes/sha256";
-import { hmac } from "@noble/hashes/hmac";
-import { bytesToHex, hexToBytes, randomBytes } from "@noble/hashes/utils";
-import { base64 } from "@scure/base";
-import { streamXOR as xchacha20 } from "@stablelib/xchacha20";
+import { scryptAsync } from "npm:@noble/hashes/scrypt";
+import { sha256 } from "npm:@noble/hashes/sha256";
+import { hmac } from "npm:@noble/hashes/hmac";
+import { bytesToHex, hexToBytes, randomBytes } from "npm:@noble/hashes/utils";
+import { base64 } from "npm:@scure/base";
+import { streamXOR as xchacha20 } from "npm:@stablelib/xchacha20";
 
 export class InvalidPinError extends Error {
   constructor() {

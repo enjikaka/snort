@@ -1,6 +1,6 @@
-import * as secp from "@noble/curves/secp256k1";
-import * as utils from "@noble/curves/abstract/utils";
-import { unwrap } from "@snort/shared";
+import * as secp from "npm:@noble/curves/secp256k1";
+import * as utils from "npm:@noble/curves/abstract/utils";
+import { unwrap } from "npm:@snort/shared@1.0.16";
 
 import {
   decodeEncryptionPayload,
@@ -21,13 +21,13 @@ import {
   ToNostrEventTag,
   u256,
   UserMetadata,
-} from ".";
+} from "./index.ts";
 
-import { EventBuilder } from "./event-builder";
-import { findTag } from "./utils";
-import { Nip7Signer } from "./impl/nip7";
-import { base64 } from "@scure/base";
-import { Nip10 } from "./impl/nip10";
+import { EventBuilder } from "./event-builder.ts";
+import { findTag } from "./utils.ts";
+import { Nip7Signer } from "./impl/nip7.ts";
+import { base64 } from "npm:@scure/base";
+import { Nip10 } from "./impl/nip10.ts";
 
 type EventBuilderHook = (ev: EventBuilder) => EventBuilder;
 

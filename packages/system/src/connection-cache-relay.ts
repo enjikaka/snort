@@ -1,8 +1,8 @@
-import { NostrEvent, OkResponse, ReqCommand, ReqFilter, TaggedNostrEvent } from "./nostr";
-import { CacheRelay } from "./cache-relay";
-import { Connection } from "./connection";
-import { NoteCollection } from "./note-collection";
-import { v4 as uuid } from "uuid";
+import { NostrEvent, OkResponse, ReqCommand, ReqFilter, TaggedNostrEvent } from "./nostr.ts";
+import { CacheRelay } from "./cache-relay.ts";
+import { Connection } from "./connection.ts";
+import { NoteCollection } from "./note-collection.ts";
+import { v4 as uuid } from "npm:uuid@9.0.1";
 
 /**
  * Use a regular connection as a CacheRelay

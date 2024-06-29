@@ -1,7 +1,7 @@
-import { dedupe, unwrap } from "@snort/shared";
-import { EventBuilder } from "../event-builder";
-import { NostrEvent } from "../nostr";
-import { NostrLink } from "../nostr-link";
+import { dedupe, unwrap } from "npm:@snort/shared@1.0.16";
+import { EventBuilder } from "../event-builder.ts";
+import { NostrEvent } from "../nostr.ts";
+import { NostrLink } from "../nostr-link.ts";
 
 export interface Nip10Thread {
   root?: NostrLink;

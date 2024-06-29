@@ -1,10 +1,10 @@
 import { bytesToHex } from "@noble/curves/abstract/utils";
-import { getPublicKey } from "@snort/shared";
-import { EventExt } from "./event-ext";
-import { Nip4WebCryptoEncryptor } from "./impl/nip4";
-import { XChaCha20Encryptor } from "./impl/nip44";
-import { MessageEncryptorVersion, decodeEncryptionPayload, encodeEncryptionPayload } from "./index";
-import { NostrEvent, NotSignedNostrEvent } from "./nostr";
+import { getPublicKey } from "npm:@snort/shared@1.0.16";
+import { EventExt } from "./event-ext.ts";
+import { Nip4WebCryptoEncryptor } from "./impl/nip4.ts";
+import { XChaCha20Encryptor } from "./impl/nip44.ts";
+import { MessageEncryptorVersion, decodeEncryptionPayload, encodeEncryptionPayload } from "./index.ts";
+import { NostrEvent, NotSignedNostrEvent } from "./nostr.ts";
 import { base64 } from "@scure/base";
 
 export type SignerSupports = "nip04" | "nip44" | string;

@@ -1,14 +1,14 @@
-import { v4 as uuid } from "uuid";
+import { v4 as uuid } from "npm:uuid@9.0.1";
 import debug from "debug";
-import { EventEmitter } from "eventemitter3";
-import { unixNowMs, unwrap } from "@snort/shared";
+import { EventEmitter } from "npm:eventemitter3@5.0.1";
+import { unixNowMs, unwrap } from "npm:@snort/shared@1.0.16";
 
-import { ReqFilter, Nips, TaggedNostrEvent, SystemInterface, ParsedFragment } from ".";
-import { NoteCollection } from "./note-collection";
-import { BuiltRawReqFilter, RequestBuilder } from "./request-builder";
-import { eventMatchesFilter } from "./request-matcher";
-import { LRUCache } from "lru-cache";
-import { ConnectionType } from "./connection-pool";
+import { ReqFilter, Nips, TaggedNostrEvent, SystemInterface, ParsedFragment } from "./index.ts";
+import { NoteCollection } from "./note-collection.ts";
+import { BuiltRawReqFilter, RequestBuilder } from "./request-builder.ts";
+import { eventMatchesFilter } from "./request-matcher.ts";
+import { LRUCache } from "npm:lru-cache@10.2.2";
+import { ConnectionType } from "./connection-pool.ts";
 
 interface QueryTraceEvents {
   close: (id: string) => void;

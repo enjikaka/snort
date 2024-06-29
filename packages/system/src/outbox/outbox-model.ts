@@ -1,10 +1,10 @@
-import { EventKind, NostrEvent, ReqFilter, RequestBuilder, SystemInterface } from "..";
-import { appendDedupe, dedupe, removeUndefined, unixNowMs, unwrap } from "@snort/shared";
-import { FlatReqFilter } from "../query-optimizer";
-import { RelayListCacheExpire } from "../const";
-import { AuthorsRelaysCache, EventFetcher, PickedRelays, DefaultPickNRelays, parseRelaysFromKind } from ".";
-import debug from "debug";
-import { BaseRequestRouter } from "../request-router";
+import { EventKind, NostrEvent, ReqFilter, RequestBuilder, SystemInterface } from "../index.ts";
+import { appendDedupe, dedupe, removeUndefined, unixNowMs, unwrap } from "npm:@snort/shared@1.0.16";
+import { FlatReqFilter } from "../query-optimizer/index.ts";
+import { RelayListCacheExpire } from "../const.ts";
+import { AuthorsRelaysCache, EventFetcher, PickedRelays, DefaultPickNRelays, parseRelaysFromKind } from "./index.ts";
+import debug from "npm:debug";
+import { BaseRequestRouter } from "../request-router.ts";
 
 /**
  * Simple outbox model using most popular relays

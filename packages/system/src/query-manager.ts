@@ -1,10 +1,10 @@
-import debug from "debug";
-import { EventEmitter } from "eventemitter3";
-import { BuiltRawReqFilter, RequestBuilder, SystemInterface, TaggedNostrEvent } from ".";
-import { Query, TraceReport } from "./query";
-import { FilterCacheLayer } from "./filter-cache-layer";
-import { trimFilters } from "./request-trim";
-import { eventMatchesFilter } from "./request-matcher";
+import debug from "npm:debug";
+import { BuiltRawReqFilter, RequestBuilder, SystemInterface, TaggedNostrEvent } from "./index.ts";
+import { Query, TraceReport } from "./query.ts";
+import { FilterCacheLayer } from "./filter-cache-layer.ts";
+import { trimFilters } from "./request-trim.ts";
+import { eventMatchesFilter } from "./request-matcher.ts";
+import { EventEmitter } from "npm:eventemitter3@5.0.1";
 
 interface QueryManagerEvents {
   change: () => void;

@@ -1,7 +1,7 @@
-import { NostrPrefix } from "./links";
-import { NostrLink, ToNostrEventTag } from "./nostr-link";
-import { DiffSyncTags, JsonEventSync } from "./sync";
-import EventKind from "./event-kind";
+import { NostrPrefix } from "./links.ts";
+import { NostrLink, ToNostrEventTag } from "./nostr-link.ts";
+import { DiffSyncTags, JsonEventSync } from "./sync/index.ts";
+import EventKind from "./event-kind.ts";
 import {
   EventSigner,
   FullRelaySettings,
@@ -11,10 +11,10 @@ import {
   parseRelayTags,
   parseRelaysFromKind,
   settingsToRelayTag,
-} from ".";
-import { dedupe, removeUndefined, sanitizeRelayUrl } from "@snort/shared";
-import debug from "debug";
-import EventEmitter from "eventemitter3";
+} from "./index.ts";
+import { dedupe, removeUndefined, sanitizeRelayUrl } from "npm:@snort/shared@1.0.16";
+import debug from "npm:debug";
+import { EventEmitter } from "npm:eventemitter3@5.0.1";
 
 export interface UserStateOptions<T> {
   appdataId: string;

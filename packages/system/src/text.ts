@@ -1,4 +1,4 @@
-import { removeUndefined } from "@snort/shared";
+import { removeUndefined } from "npm:@snort/shared@1.0.16";
 
 import {
   CashuRegex,
@@ -8,10 +8,10 @@ import {
   MarkdownCodeRegex,
   MentionNostrEntityRegex,
   TagRefRegex,
-} from "./const";
-import { NostrLink, validateNostrLink } from "./nostr-link";
-import { splitByUrl } from "./utils";
-import { IMeta } from "./nostr";
+} from "./const.ts";
+import { NostrLink, validateNostrLink } from "./nostr-link.ts";
+import { splitByUrl } from "./utils.ts";
+import { IMeta } from "./nostr.ts";
 
 export interface ParsedFragment {
   type:

@@ -1,10 +1,10 @@
-import debug from "debug";
-import { LRUCache } from "lru-cache";
-import { decodeInvoice, InvoiceDetails } from "@snort/shared";
-import { NostrEvent } from "../nostr";
-import { findTag } from "../utils";
-import { NostrLink } from "../nostr-link";
-import { Nip10 } from "./nip10";
+import debug from "npm:debug";
+import { LRUCache } from "npm:lru-cache@10.2.2";
+import { decodeInvoice, InvoiceDetails } from "npm:@snort/shared@1.0.16";
+import { NostrEvent } from "../nostr.ts";
+import { findTag } from "../utils.ts";
+import { NostrLink } from "../nostr-link.ts";
+import { Nip10 } from "./nip10.ts";
 
 const Log = debug("zaps");
 const ParsedZapCache = new LRUCache<string, ParsedZap>({ max: 1000 });

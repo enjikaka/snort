@@ -1,6 +1,6 @@
-import { unwrap } from "@snort/shared";
-import { NostrEvent, ReqFilter } from "./nostr";
-import { FlatReqFilter } from "./query-optimizer";
+import { unwrap } from "npm:@snort/shared@1.0.16";
+import { NostrEvent, ReqFilter } from "./nostr.ts";
+import { FlatReqFilter } from "./query-optimizer/index.ts";
 
 /**
  * Request router managed splitting of requests to one or more relays, and which relay to send events to.

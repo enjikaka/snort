@@ -1,10 +1,10 @@
-import * as secp from "@noble/curves/secp256k1";
-import * as utils from "@noble/curves/abstract/utils";
-import { getPublicKey, sha256, unixNow } from "@snort/shared";
+import * as secp from "npm:@noble/curves/secp256k1";
+import * as utils from "npm:@noble/curves/abstract/utils";
+import { getPublicKey, sha256, unixNow } from "npm:@snort/shared@1.0.16";
 
-import { EventKind, HexKey, NostrEvent, NotSignedNostrEvent } from ".";
-import { minePow } from "./pow-util";
-import { findTag } from "./utils";
+import { EventKind, HexKey, NostrEvent, NotSignedNostrEvent } from "./index.ts";
+import { minePow } from "./pow-util.ts";
+import { findTag } from "./utils.ts";
 
 export interface Tag {
   key: string;

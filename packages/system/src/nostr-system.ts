@@ -1,12 +1,12 @@
 import debug from "debug";
 
-import { unixNowMs } from "@snort/shared";
-import { NostrEvent, TaggedNostrEvent, OkResponse } from "./nostr";
-import { RelaySettings } from "./connection";
-import { BuiltRawReqFilter, RequestBuilder } from "./request-builder";
-import { RelayMetricHandler } from "./relay-metric-handler";
+import { unixNowMs } from "npm:@snort/shared@1.0.16";
+import { NostrEvent, TaggedNostrEvent, OkResponse } from "./nostr.ts";
+import { RelaySettings } from "./connection.ts";
+import { BuiltRawReqFilter, RequestBuilder } from "./request-builder.ts";
+import { RelayMetricHandler } from "./relay-metric-handler.ts";
+import { ProfileLoaderService } from "./profile-cache.ts";
 import {
-  ProfileLoaderService,
   SystemInterface,
   SystemSnapshot,
   QueryLike,
@@ -15,12 +15,12 @@ import {
   EventKind,
   ID,
   SystemConfig,
-} from ".";
-import { RelayMetadataLoader } from "./outbox";
-import { ConnectionPool, DefaultConnectionPool } from "./connection-pool";
-import { QueryManager } from "./query-manager";
-import { RequestRouter } from "./request-router";
-import { SystemBase } from "./system-base";
+} from "./index.ts";
+import { RelayMetadataLoader } from "./outbox/index.ts";
+import { ConnectionPool, DefaultConnectionPool } from "./connection-pool.ts";
+import { QueryManager } from "./query-manager.ts";
+import { RequestRouter } from "./request-router.ts";
+import { SystemBase } from "./system-base.ts";
 
 /**
  * Manages nostr content retrieval system

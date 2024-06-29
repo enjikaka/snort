@@ -1,5 +1,5 @@
-import { EventKind, FullRelaySettings, NostrEvent, SystemInterface, UsersRelays } from "..";
-import { removeUndefined, sanitizeRelayUrl } from "@snort/shared";
+import { EventKind, FullRelaySettings, NostrEvent, SystemInterface, UsersRelays } from "../index.ts";
+import { removeUndefined, sanitizeRelayUrl } from "npm:@snort/shared@1.0.16";
 
 export const DefaultPickNRelays = 2;
 
@@ -78,5 +78,5 @@ export function settingsToRelayTag(rx: FullRelaySettings) {
   }
 }
 
-export * from "./outbox-model";
-export * from "./relay-loader";
+export * from "./outbox-model.ts";
+export * from "./relay-loader.ts";

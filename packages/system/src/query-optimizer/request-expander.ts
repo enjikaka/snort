@@ -1,6 +1,6 @@
-import { sha256 } from "@snort/shared";
-import { FlatReqFilter } from ".";
-import { ReqFilter } from "../nostr";
+import { sha256 } from "npm:@snort/shared@1.0.16";
+import { FlatReqFilter } from "./index.ts";
+import { ReqFilter } from "../nostr.ts";
 
 /**
  * Expand a filter into its most fine grained form

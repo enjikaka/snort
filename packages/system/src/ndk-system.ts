@@ -1,8 +1,8 @@
-import { EventEmitter } from "eventemitter3";
-import { QueryLike, SystemConfig, SystemInterface } from "./system";
-import { RelaySettings, SyncCommand } from "./connection";
-import { TaggedNostrEvent, NostrEvent, OkResponse, ReqCommand } from "./nostr";
-import { BuiltRawReqFilter, RequestBuilder } from "./request-builder";
+import { EventEmitter } from "npm:eventemitter3@5.0.1";
+import { QueryLike, SystemConfig, SystemInterface } from "./system.ts";
+import { RelaySettings, SyncCommand } from "./connection.ts";
+import { TaggedNostrEvent, NostrEvent, OkResponse, ReqCommand } from "./nostr.ts";
+import { BuiltRawReqFilter, RequestBuilder } from "./request-builder.ts";
 import NDK, {
   NDKConstructorParams,
   NDKEvent,
@@ -10,17 +10,17 @@ import NDK, {
   NDKRelay,
   NDKSubscription,
   NDKRelayStatus,
-} from "@nostr-dev-kit/ndk";
-import { SystemBase } from "./system-base";
-import { ConnectionPool, ConnectionType, ConnectionTypeEvents, DefaultConnectionPool } from "./connection-pool";
-import { RelayMetadataLoader } from "./outbox";
-import { ProfileLoaderService } from "./profile-cache";
-import { RequestRouter } from "./request-router";
-import { RelayMetricHandler } from "./relay-metric-handler";
-import { RelayInfo } from "./relay-info";
-import { v4 as uuid } from "uuid";
-import { QueryManager } from "./query-manager";
-import debug from "debug";
+} from "npm:@nostr-dev-kit/ndk";
+import { SystemBase } from "./system-base.ts";
+import { ConnectionPool, ConnectionType, ConnectionTypeEvents, DefaultConnectionPool } from "./connection-pool.ts";
+import { RelayMetadataLoader } from "./outbox/index.ts";
+import { ProfileLoaderService } from "./profile-cache.ts";
+import { RequestRouter } from "./request-router.ts";
+import { RelayMetricHandler } from "./relay-metric-handler.ts";
+import { RelayInfo } from "./relay-info.ts";
+import { v4 as uuid } from "npm:uuid@9.0.1";
+import { QueryManager } from "./query-manager.ts";
+import debug from "npm:debug";
 
 class NDKConnection extends EventEmitter<ConnectionTypeEvents> implements ConnectionType {
   #id: string;

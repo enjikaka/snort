@@ -1,6 +1,6 @@
-import { bytesToHex } from "@noble/hashes/utils";
-import { WrappedBuffer } from "./wrapped-buffer";
-import { NegentropyStorageVector, VectorStorageItem } from "./vector-storage";
+import { bytesToHex } from "npm:@noble/hashes/utils";
+import { WrappedBuffer } from "./wrapped-buffer.ts";
+import { NegentropyStorageVector, VectorStorageItem } from "./vector-storage.ts";
 import {
   PROTOCOL_VERSION,
   getByte,
@@ -10,7 +10,7 @@ import {
   getBytes,
   FINGERPRINT_SIZE,
   compareUint8Array,
-} from "./utils";
+} from "./utils.ts";
 
 export class Negentropy {
   readonly #storage: NegentropyStorageVector;

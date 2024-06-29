@@ -1,14 +1,14 @@
-import { unwrap, bech32ToHex } from "@snort/shared";
-import { secp256k1 } from "@noble/curves/secp256k1";
-import { v4 as uuid } from "uuid";
+import { unwrap, bech32ToHex } from "npm:@snort/shared@1.0.16";
+import { secp256k1 } from "npm:@noble/curves/secp256k1";
+import { v4 as uuid } from "npm:uuid@9.0.1";
 import debug from "debug";
 
-import { Connection } from "../connection";
-import { EventSigner, PrivateKeySigner } from "../signer";
-import { NostrEvent } from "../nostr";
-import { EventBuilder } from "../event-builder";
-import EventKind from "../event-kind";
-import { EventEmitter } from "eventemitter3";
+import { Connection } from "../connection.ts";
+import { EventSigner, PrivateKeySigner } from "../signer.ts";
+import { NostrEvent } from "../nostr.ts";
+import { EventBuilder } from "../event-builder.ts";
+import EventKind from "../event-kind.ts";
+import { EventEmitter } from "npm:eventemitter3@5.0.1";
 
 const NIP46_KIND = 24_133;
 // FIXME add all kinds that Snort signs

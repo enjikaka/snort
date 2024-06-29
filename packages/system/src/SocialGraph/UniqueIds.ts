@@ -3,8 +3,8 @@ export type UID = number;
 
 // save space by mapping strs to internal unique ids
 export class UniqueIds {
-  static strToUniqueId = new Map<string, UID>();
-  static uniqueIdToStr = new Map<UID, string>();
+  static strToUniqueId: Map<string, UID> = new Map();
+  static uniqueIdToStr: Map<UID, string> = new Map();
   static currentUniqueId = 0;
 
   static id(str: string): UID {

@@ -1,6 +1,6 @@
-import { distance } from "@snort/shared";
-import { ReqFilter } from "..";
-import { FlatReqFilter } from ".";
+import { distance } from "npm:@snort/shared@1.0.16";
+import { ReqFilter } from "../index.ts";
+import { FlatReqFilter } from "./index.ts";
 
 export function canMergeFilters(a: FlatReqFilter | ReqFilter, b: FlatReqFilter | ReqFilter): boolean {
   if (a.resultSetId !== b.resultSetId) {

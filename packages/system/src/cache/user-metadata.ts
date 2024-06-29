@@ -1,5 +1,5 @@
-import { CachedMetadata } from ".";
-import { fetchNip05Pubkey, FeedCache, LNURL, DexieTableLike } from "@snort/shared";
+import { CachedMetadata } from "./index.ts";
+import { fetchNip05Pubkey, FeedCache, LNURL, DexieTableLike } from "npm:@snort/shared@1.0.16";
 
 export class UserProfileCache extends FeedCache<CachedMetadata> {
   #zapperQueue: Array<{ pubkey: string; lnurl: string }> = [];

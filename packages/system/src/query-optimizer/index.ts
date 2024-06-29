@@ -1,9 +1,9 @@
-import { schnorr } from "@noble/curves/secp256k1";
-import { NostrEvent, ReqFilter } from "../nostr";
-import { expandFilter } from "./request-expander";
-import { flatMerge, mergeSimilar } from "./request-merger";
-import { diffFilters } from "./request-splitter";
-import { EventExt } from "../event-ext";
+import { schnorr } from "npm:@noble/curves/secp256k1";
+import { NostrEvent, ReqFilter } from "../nostr.ts";
+import { expandFilter } from "./request-expander.ts";
+import { flatMerge, mergeSimilar } from "./request-merger.ts";
+import { diffFilters } from "./request-splitter.ts";
+import { EventExt } from "../event-ext.ts";
 
 export interface FlatReqFilter {
   keys: number;

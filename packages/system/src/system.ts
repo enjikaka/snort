@@ -1,16 +1,16 @@
-import { CachedTable } from "@snort/shared";
-import { UsersRelays, CachedMetadata, RelayMetrics, UsersFollows, SnortSystemDb } from "./cache";
-import { CacheRelay } from "./cache-relay";
-import { RelaySettings } from "./connection";
-import { ConnectionPool } from "./connection-pool";
-import { TaggedNostrEvent, OkResponse, ReqFilter, NostrEvent } from "./nostr";
-import { AuthorsRelaysCache, RelayMetadataLoader } from "./outbox";
-import { ProfileLoaderService } from "./profile-cache";
-import { Optimizer } from "./query-optimizer";
-import { BuiltRawReqFilter, RequestBuilder } from "./request-builder";
-import { RequestRouter } from "./request-router";
-import { QueryEvents } from "./query";
-import EventEmitter from "eventemitter3";
+import { CachedTable } from "npm:@snort/shared@1.0.16";
+import { UsersRelays, CachedMetadata, RelayMetrics, UsersFollows, SnortSystemDb } from "./cache/index.ts";
+import { CacheRelay } from "./cache-relay.ts";
+import { RelaySettings } from "./connection.ts";
+import { ConnectionPool } from "./connection-pool.ts";
+import { TaggedNostrEvent, OkResponse, ReqFilter, NostrEvent } from "./nostr.ts";
+import { AuthorsRelaysCache, RelayMetadataLoader } from "./outbox/index.ts";
+import { ProfileLoaderService } from "./profile-cache.ts";
+import { Optimizer } from "./query-optimizer/index.ts";
+import { BuiltRawReqFilter, RequestBuilder } from "./request-builder.ts";
+import { RequestRouter } from "./request-router.ts";
+import { QueryEvents } from "./query.ts";
+import { EventEmitter } from "npm:eventemitter3@5.0.1";
 
 export type QueryLike = {
   get progress(): number;

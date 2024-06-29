@@ -1,6 +1,6 @@
-import { hexToBytes } from "@noble/hashes/utils";
-import { Accumulator } from "./accumulator";
-import { itemCompare } from "./utils";
+import { hexToBytes } from "npm:@noble/hashes/utils";
+import { Accumulator } from "./accumulator.ts";
+import { itemCompare } from "./utils.ts";
 
 export interface VectorStorageItem {
   timestamp: number;
