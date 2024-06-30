@@ -58,7 +58,7 @@ export class UserProfileCache extends FeedCache<CachedMetadata> {
    * @param m Profile metadata
    * @returns
    */
-  override async update(m: CachedMetadata) {
+  override async update(m: CachedMetadata): Promise<"new" | "refresh" | "updated" | "no_change"> {
     const updateType = await super.update(m);
     if (updateType !== "refresh") {
       const lnurl = m.lud16 ?? m.lud06;

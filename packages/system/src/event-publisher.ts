@@ -1,5 +1,5 @@
-import * as secp from "npm:@noble/curves/secp256k1";
-import * as utils from "npm:@noble/curves/abstract/utils";
+import * as secp from "npm:@noble/curves@1.4.0/secp256k1";
+import * as utils from "npm:@noble/curves@1.4.0/abstract/utils";
 import { unwrap } from "npm:@snort/shared@1.0.16";
 
 import {
@@ -26,7 +26,7 @@ import {
 import { EventBuilder } from "./event-builder.ts";
 import { findTag } from "./utils.ts";
 import { Nip7Signer } from "./impl/nip7.ts";
-import { base64 } from "npm:@scure/base";
+import { base64 } from "npm:@scure/base@1.1.7";
 import { Nip10 } from "./impl/nip10.ts";
 
 type EventBuilderHook = (ev: EventBuilder) => EventBuilder;
@@ -42,14 +42,14 @@ export class EventPublisher {
     this.#pubKey = pubKey;
   }
 
-  get signer() {
+  get signer(): EventSigner {
     return this.#signer;
   }
 
   /**
    * Create a NIP-07 EventPublisher
    */
-  static async nip7() {
+  static async nip7(): Promise<EventPublisher | undefined> {
     if ("nostr" in window) {
       const signer = new Nip7Signer();
       const pubkey = await signer.getPubKey();
@@ -62,43 +62,43 @@ export class EventPublisher {
   /**
    * Create an EventPublisher for a private key
    */
-  static privateKey(privateKey: string) {
+  static privateKey(privateKey: string): EventPublisher {
     const signer = new PrivateKeySigner(privateKey);
     return new EventPublisher(signer, signer.getPubKey());
   }
 
-  supports(t: SignerSupports) {
+  supports(t: SignerSupports): boolean  {
     return this.#signer.supports.includes(t);
   }
 
-  get pubKey() {
+  get pubKey(): string {
     return this.#pubKey;
   }
 
   /**
    * Create a copy of this publisher with PoW
    */
-  pow(target: number, miner?: PowMiner) {
+  pow(target: number, miner?: PowMiner): EventPublisher {
     const ret = new EventPublisher(this.#signer, this.#pubKey);
     ret.#pow = target;
     ret.#miner = miner;
     return ret;
   }
 
-  #eb(k: EventKind) {
+  #eb(k: EventKind): EventBuilder {
     const eb = new EventBuilder();
     return eb.pubKey(this.#pubKey).kind(k);
   }
 
-  async #sign(eb: EventBuilder) {
+  async #sign(eb: EventBuilder): Promise<NostrEvent> {
     return await (this.#pow ? eb.pow(this.#pow, this.#miner) : eb).buildAndSign(this.#signer);
   }
 
-  async nip4Encrypt(content: string, otherKey: string) {
+  async nip4Encrypt(content: string, otherKey: string): Promise<string> {
     return await this.#signer.nip4Encrypt(content, otherKey);
   }
 
-  async nip4Decrypt(content: string, otherKey: string) {
+  async nip4Decrypt(content: string, otherKey: string): Promise<string> {
     return await this.#signer.nip4Decrypt(content, otherKey);
   }
 

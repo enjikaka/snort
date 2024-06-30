@@ -1,5 +1,5 @@
-import * as utils from "npm:@noble/curves/abstract/utils";
-import { bech32 } from "npm:@scure/base";
+import * as utils from "npm:@noble/curves@1.4.0/abstract/utils";
+import { bech32 } from "npm:@scure/base@1.1.7";
 import { HexKey } from "./nostr.ts";
 
 export enum NostrPrefix {

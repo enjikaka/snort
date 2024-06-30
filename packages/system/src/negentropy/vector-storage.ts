@@ -1,4 +1,4 @@
-import { hexToBytes } from "npm:@noble/hashes/utils";
+import { hexToBytes } from "npm:@noble/hashes@1.4.0/utils";
 import { Accumulator } from "./accumulator.ts";
 import { itemCompare } from "./utils.ts";
 

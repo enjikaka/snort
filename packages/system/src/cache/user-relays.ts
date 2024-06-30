@@ -27,7 +27,7 @@ export class UserRelaysCache extends FeedCache<UsersRelays> {
     return [...this.cache.values()];
   }
 
-  async search() {
+  async search(): Promise<UsersRelays[]> {
     return <Array<UsersRelays>>[];
   }
 }

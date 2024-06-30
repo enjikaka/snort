@@ -56,7 +56,7 @@ export interface UsersFollows {
   follows: Array<Array<string>>;
 }
 
-export function mapEventToProfile(ev: NostrEvent) {
+export function mapEventToProfile(ev: NostrEvent): CachedMetadata | undefined {
   if (ev.kind !== 0) return;
   try {
     const data: UserMetadata = JSON.parse(ev.content);

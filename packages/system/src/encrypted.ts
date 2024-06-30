@@ -1,9 +1,9 @@
-import { scryptAsync } from "npm:@noble/hashes/scrypt";
-import { sha256 } from "npm:@noble/hashes/sha256";
-import { hmac } from "npm:@noble/hashes/hmac";
-import { bytesToHex, hexToBytes, randomBytes } from "npm:@noble/hashes/utils";
-import { base64 } from "npm:@scure/base";
-import { streamXOR as xchacha20 } from "npm:@stablelib/xchacha20";
+import { scryptAsync } from "npm:@noble/hashes@1.4.0/scrypt";
+import { sha256 } from "npm:@noble/hashes@1.4.0/sha256";
+import { hmac } from "npm:@noble/hashes@1.4.0/hmac";
+import { bytesToHex, hexToBytes, randomBytes } from "npm:@noble/hashes@1.4.0/utils";
+import { base64 } from "npm:@scure/base@1.1.7";
+import { streamXOR as xchacha20 } from "npm:@stablelib/xchacha20@1.0.1";
 
 export class InvalidPinError extends Error {
   constructor() {
@@ -30,7 +30,7 @@ export abstract class KeyStorage {
   /**
    * Create a key storage class from its payload
    */
-  static fromPayload(o: object) {
+  static fromPayload(o: object): NotEncrypted | PinEncrypted {
     if ("raw" in o && typeof o.raw === "string") {
       return new NotEncrypted(o.raw);
     } else {
@@ -52,7 +52,7 @@ export class PinEncrypted extends KeyStorage {
     this.#encrypted = enc;
   }
 
-  get value() {
+  get value(): string {
     if (!this.#decrypted) throw new Error("Content has not been decrypted yet");
     return bytesToHex(this.#decrypted);
   }
@@ -72,11 +72,11 @@ export class PinEncrypted extends KeyStorage {
     this.#decrypted = plaintext;
   }
 
-  toPayload() {
+  toPayload(): PinEncryptedPayload {
     return this.#encrypted;
   }
 
-  static async create(content: string, pin: string) {
+  static async create(content: string, pin: string): Promise<PinEncrypted> {
     const salt = randomBytes(24);
     const nonce = randomBytes(24);
     const plaintext = hexToBytes(content);
@@ -102,7 +102,7 @@ export class NotEncrypted extends KeyStorage {
     this.#key = key;
   }
 
-  get value() {
+  get value(): string {
     return this.#key;
   }
 

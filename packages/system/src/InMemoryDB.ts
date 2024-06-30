@@ -1,6 +1,6 @@
 import { ID, ReqFilter as Filter, STR, TaggedNostrEvent, UID } from "./index.ts";
 import loki from "npm:lokijs";
-import debug from "npm:debug";
+import debug from "npm:debug@4.3.5";
 
 type PackedNostrEvent = {
   id: UID;

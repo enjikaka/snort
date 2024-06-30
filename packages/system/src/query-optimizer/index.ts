@@ -1,4 +1,4 @@
-import { schnorr } from "npm:@noble/curves/secp256k1";
+import { schnorr } from "npm:@noble/curves@1.4.0/secp256k1";
 import { NostrEvent, ReqFilter } from "../nostr.ts";
 import { expandFilter } from "./request-expander.ts";
 import { flatMerge, mergeSimilar } from "./request-merger.ts";

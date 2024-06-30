@@ -1,5 +1,3 @@
-/// <reference lib="webworker" />
-
 import { minePow, NostrPowEvent } from "./pow-util.ts";
 
 export interface PowWorkerMessage {
@@ -9,13 +7,13 @@ export interface PowWorkerMessage {
   target: number;
 }
 
-globalThis.onmessage = ev => {
+(globalThis as unknown as Worker).onmessage = ev => {
   const data = ev.data as PowWorkerMessage;
   if (data.cmd === "req") {
     queueMicrotask(() => {
       minePow(data.event, data.target);
       data.cmd = "rsp";
-      globalThis.postMessage(data);
+      (globalThis as unknown as Worker).postMessage(data);
     });
   }
 };

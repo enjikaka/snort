@@ -1,4 +1,4 @@
-import debug from "npm:debug";
+import debug from "npm:debug@4.3.5";
 import { BuiltRawReqFilter, RequestBuilder, SystemInterface, TaggedNostrEvent } from "./index.ts";
 import { Query, TraceReport } from "./query.ts";
 import { FilterCacheLayer } from "./filter-cache-layer.ts";

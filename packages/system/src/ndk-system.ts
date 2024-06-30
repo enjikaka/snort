@@ -10,7 +10,7 @@ import NDK, {
   NDKRelay,
   NDKSubscription,
   NDKRelayStatus,
-} from "npm:@nostr-dev-kit/ndk";
+} from "npm:@nostr-dev-kit/ndk@2.8.2";
 import { SystemBase } from "./system-base.ts";
 import { ConnectionPool, ConnectionType, ConnectionTypeEvents, DefaultConnectionPool } from "./connection-pool.ts";
 import { RelayMetadataLoader } from "./outbox/index.ts";
@@ -20,7 +20,7 @@ import { RelayMetricHandler } from "./relay-metric-handler.ts";
 import { RelayInfo } from "./relay-info.ts";
 import { v4 as uuid } from "npm:uuid@9.0.1";
 import { QueryManager } from "./query-manager.ts";
-import debug from "npm:debug";
+import debug from "npm:debug@4.3.5";
 
 class NDKConnection extends EventEmitter<ConnectionTypeEvents> implements ConnectionType {
   #id: string;

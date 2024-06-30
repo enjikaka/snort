@@ -14,14 +14,14 @@ export class EventBuilder {
   #powMiner?: PowMiner;
   #jitter?: number;
 
-  get pubkey() {
+  get pubkey(): string | undefined {
     return this.#pubkey;
   }
 
   /**
    * Populate builder with values from link
    */
-  fromLink(link: NostrLink) {
+  fromLink(link: NostrLink): void {
     if (link.kind) {
       this.#kind = link.kind;
     }
@@ -33,27 +33,27 @@ export class EventBuilder {
     }
   }
 
-  jitter(n: number) {
+  jitter(n: number): this {
     this.#jitter = n;
     return this;
   }
 
-  kind(k: EventKind) {
+  kind(k: EventKind): this  {
     this.#kind = k;
     return this;
   }
 
-  content(c: string) {
+  content(c: string): this {
     this.#content = c;
     return this;
   }
 
-  createdAt(n: number) {
+  createdAt(n: number): this {
     this.#createdAt = n;
     return this;
   }
 
-  pubKey(k: string) {
+  pubKey(k: string): this {
     this.#pubkey = k;
     return this;
   }
@@ -65,7 +65,7 @@ export class EventBuilder {
     return this;
   }
 
-  pow(target: number, miner?: PowMiner) {
+  pow(target: number, miner?: PowMiner): this {
     this.#pow = target;
     this.#powMiner = miner ?? {
       minePow: (ev, target) => {
@@ -79,7 +79,7 @@ export class EventBuilder {
   /**
    * Extract mentions
    */
-  processContent() {
+  processContent(): this {
     if (this.#content) {
       this.#content = this.#content.replace(MentionNostrEntityRegex, m => this.#replaceMention(m));
 
@@ -91,7 +91,7 @@ export class EventBuilder {
     return this;
   }
 
-  build() {
+  build(): NostrEvent {
     this.#validate();
     const ev = {
       id: "",
@@ -109,7 +109,7 @@ export class EventBuilder {
    * Build and sign event
    * @param pk Private key to sign event with
    */
-  async buildAndSign(pk: HexKey | EventSigner) {
+  async buildAndSign(pk: HexKey | EventSigner): Promise<NostrEvent> {
     if (typeof pk === "string") {
       const ev = this.pubKey(getPublicKey(pk)).build();
       return EventExt.sign(await this.#mine(ev), pk);

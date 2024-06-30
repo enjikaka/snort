@@ -1,4 +1,4 @@
-import debug from "debug";
+import debug from "npm:debug@4.3.5";
 import { CachedTable, removeUndefined } from "npm:@snort/shared@1.0.16";
 import { SystemInterface, TaggedNostrEvent, RequestBuilder } from "./index.ts";
 
@@ -47,7 +47,7 @@ export abstract class BackgroundLoader<T extends { loaded: number; created: numb
   /**
    * Start requesting a set of keys to be loaded
    */
-  TrackKeys(pk: string | Array<string>) {
+  TrackKeys(pk: string | Array<string>): void {
     for (const p of Array.isArray(pk) ? pk : [pk]) {
       this.#wantsKeys.add(p);
     }
@@ -56,7 +56,7 @@ export abstract class BackgroundLoader<T extends { loaded: number; created: numb
   /**
    * Stop requesting a set of keys to be loaded
    */
-  UntrackKeys(pk: string | Array<string>) {
+  UntrackKeys(pk: string | Array<string>): void {
     for (const p of Array.isArray(pk) ? pk : [pk]) {
       this.#wantsKeys.delete(p);
     }
@@ -65,7 +65,7 @@ export abstract class BackgroundLoader<T extends { loaded: number; created: numb
   /**
    * Get object from cache or fetch if missing
    */
-  async fetch(key: string) {
+  async fetch(key: string): Promise<any> {
     const existing = this.cache.get(key);
     if (existing) {
       return existing;

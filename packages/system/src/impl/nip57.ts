@@ -1,4 +1,4 @@
-import debug from "npm:debug";
+import debug from "npm:debug@4.3.5";
 import { LRUCache } from "npm:lru-cache@10.2.2";
 import { decodeInvoice, InvoiceDetails } from "npm:@snort/shared@1.0.16";
 import { NostrEvent } from "../nostr.ts";

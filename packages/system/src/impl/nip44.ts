@@ -1,9 +1,9 @@
 import { MessageEncryptor, MessageEncryptorPayload, MessageEncryptorVersion } from "../index.ts";
 
-import { randomBytes } from "npm:@noble/hashes/utils";
-import { streamXOR as xchacha20 } from "npm:@stablelib/xchacha20";
-import { secp256k1 } from "npm:@noble/curves/secp256k1";
-import { sha256 } from "npm:@noble/hashes/sha256";
+import { randomBytes } from "npm:@noble/hashes@1.4.0/utils";
+import { streamXOR as xchacha20 } from "npm:@stablelib/xchacha20@1.0.1";
+import { secp256k1 } from "npm:@noble/curves@1.4.0/secp256k1";
+import { sha256 } from "npm:@noble/hashes@1.4.0/sha256";
 
 export class XChaCha20Encryptor implements MessageEncryptor {
   getSharedSecret(privateKey: string, publicKey: string): Uint8Array {

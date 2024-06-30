@@ -20,7 +20,7 @@ export class RelayMetricCache extends FeedCache<RelayMetrics> {
     return [...this.cache.values()];
   }
 
-  async search() {
+  async search(): Promise<RelayMetrics[]> {
     return <Array<RelayMetrics>>[];
   }
 }

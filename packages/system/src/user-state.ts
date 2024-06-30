@@ -13,7 +13,7 @@ import {
   settingsToRelayTag,
 } from "./index.ts";
 import { dedupe, removeUndefined, sanitizeRelayUrl } from "npm:@snort/shared@1.0.16";
-import debug from "npm:debug";
+import debug from "npm:debug@4.3.5";
 import { EventEmitter } from "npm:eventemitter3@5.0.1";
 
 export interface UserStateOptions<T> {

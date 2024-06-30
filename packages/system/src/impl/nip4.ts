@@ -1,5 +1,5 @@
 import { MessageEncryptor, MessageEncryptorPayload, MessageEncryptorVersion } from "../index.ts";
-import { secp256k1 } from "npm:@noble/curves/secp256k1";
+import { secp256k1 } from "npm:@noble/curves@1.4.0/secp256k1";
 
 export class Nip4WebCryptoEncryptor implements MessageEncryptor {
   getSharedSecret(privateKey: string, publicKey: string): Uint8Array {

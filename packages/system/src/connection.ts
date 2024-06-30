@@ -1,6 +1,6 @@
 import { v4 as uuid } from "npm:uuid@9.0.1";
-import debug from "npm:debug";
-import { default as IsoWebSocket } from "npm:isomorphic-ws";
+import debug from "npm:debug@4.3.5";
+import { default as IsoWebSocket } from "npm:isomorphic-ws@5.0.0";
 import { unixNowMs } from "npm:@snort/shared@1.0.16";
 import { EventEmitter } from "npm:eventemitter3@5.0.1";
 
@@ -76,7 +76,7 @@ export class Connection extends EventEmitter<ConnectionTypeEvents> implements Co
     this.#log = debug("Connection").extend(addr);
   }
 
-  get ephemeral() {
+  get ephemeral(): boolean {
     return this.#ephemeral;
   }
 
@@ -85,23 +85,23 @@ export class Connection extends EventEmitter<ConnectionTypeEvents> implements Co
     this.#setupEphemeral();
   }
 
-  get isOpen() {
+  get isOpen(): boolean {
     return this.Socket?.readyState === WebSocket.OPEN;
   }
 
-  get isConnecting() {
+  get isConnecting(): boolean {
     return this.Socket?.readyState === WebSocket.CONNECTING;
   }
 
-  get isDown() {
+  get isDown(): boolean {
     return this.#downCount > 0;
   }
 
-  get ActiveRequests() {
+  get ActiveRequests(): string[] {
     return [...this.#activeRequests];
   }
 
-  async connect(awaitOpen = false) {
+  async connect(awaitOpen = false): Promise<void> {
     // already connected
     if (this.isOpen || this.isConnecting) return;
     // wait for re-connect timer
@@ -297,7 +297,7 @@ export class Connection extends EventEmitter<ConnectionTypeEvents> implements Co
   /**
    * Send event on this connection and wait for OK response
    */
-  async publish(e: NostrEvent, timeout = 5000) {
+  async publish(e: NostrEvent, timeout = 5000): Promise<OkResponse> {
     return await new Promise<OkResponse>((resolve, reject) => {
       if (!this.settings.write) {
         reject(new Error("Not a write relay"));
@@ -346,7 +346,7 @@ export class Connection extends EventEmitter<ConnectionTypeEvents> implements Co
   /**
    * Using relay document to determine if this relay supports a feature
    */
-  supportsNip(n: number) {
+  supportsNip(n: number): boolean {
     return this.info?.supported_nips?.some(a => a === n) ?? false;
   }
 

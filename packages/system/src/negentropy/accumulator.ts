@@ -1,4 +1,4 @@
-import { sha256 } from "npm:@noble/hashes/sha256";
+import { sha256 } from "npm:@noble/hashes@1.4.0/sha256";
 import { encodeVarInt, FINGERPRINT_SIZE } from "./utils.ts";
 
 export class Accumulator {

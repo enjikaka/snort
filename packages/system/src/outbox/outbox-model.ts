@@ -3,7 +3,7 @@ import { appendDedupe, dedupe, removeUndefined, unixNowMs, unwrap } from "npm:@s
 import { FlatReqFilter } from "../query-optimizer/index.ts";
 import { RelayListCacheExpire } from "../const.ts";
 import { AuthorsRelaysCache, EventFetcher, PickedRelays, DefaultPickNRelays, parseRelaysFromKind } from "./index.ts";
-import debug from "npm:debug";
+import debug from "npm:debug@4.3.5";
 import { BaseRequestRouter } from "../request-router.ts";
 
 /**

@@ -1,4 +1,4 @@
-import { base64 } from "npm:@scure/base";
+import { base64 } from "npm:@scure/base@1.1.7";
 
 export { NostrSystem } from "./nostr-system.ts";
 export { NDKSystem } from "./ndk-system.ts";

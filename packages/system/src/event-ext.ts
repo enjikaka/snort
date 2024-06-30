@@ -1,9 +1,9 @@
-import * as secp from "npm:@noble/curves/secp256k1";
-import * as utils from "npm:@noble/curves/abstract/utils";
+import * as secp from "npm:@noble/curves@1.4.0/secp256k1";
+import * as utils from "npm:@noble/curves@1.4.0/abstract/utils";
 import { getPublicKey, sha256, unixNow } from "npm:@snort/shared@1.0.16";
 
 import { EventKind, HexKey, NostrEvent, NotSignedNostrEvent } from "./index.ts";
-import { minePow } from "./pow-util.ts";
+import { NostrPowEvent, minePow } from "./pow-util.ts";
 import { findTag } from "./utils.ts";
 
 export interface Tag {
@@ -43,7 +43,7 @@ export abstract class EventExt {
   /**
    * Sign this message with a private key
    */
-  static sign(e: NostrEvent, key: HexKey) {
+  static sign(e: NostrEvent, key: HexKey): NostrEvent {
     e.pubkey = getPublicKey(key);
     e.id = this.createId(e);
 
@@ -56,14 +56,14 @@ export abstract class EventExt {
    * Check the signature of this message
    * @returns True if valid signature
    */
-  static verify(e: NostrEvent) {
+  static verify(e: NostrEvent): boolean {
     if ((e.sig?.length ?? 0) < 64) return false;
     const id = this.createId(e);
     const result = secp.schnorr.verify(e.sig, id, e.pubkey);
     return result;
   }
 
-  static createId(e: NostrEvent | NotSignedNostrEvent) {
+  static createId(e: NostrEvent | NotSignedNostrEvent): string {
     const payload = [0, e.pubkey, e.created_at, e.kind, e.tags, e.content];
     return sha256(JSON.stringify(payload));
   }
@@ -71,14 +71,14 @@ export abstract class EventExt {
   /**
    * Mine POW for an event (NIP-13)
    */
-  static minePow(e: NostrEvent, target: number) {
+  static minePow(e: NostrEvent, target: number): NostrPowEvent {
     return minePow(e, target);
   }
 
   /**
    * Create a new event for a specific pubkey
    */
-  static forPubKey(pk: HexKey, kind: EventKind) {
+  static forPubKey(pk: HexKey, kind: EventKind): NostrEvent {
     return {
       pubkey: pk,
       kind: kind,
@@ -90,7 +90,7 @@ export abstract class EventExt {
     } as NostrEvent;
   }
 
-  static parseTag(tag: Array<string>) {
+  static parseTag(tag: Array<string>): Tag {
     if (tag.length < 1) {
       throw new Error("Invalid tag, must have more than 2 items");
     }
@@ -115,7 +115,7 @@ export abstract class EventExt {
     return ret;
   }
 
-  static extractThread(ev: NostrEvent) {
+  static extractThread(ev: NostrEvent): Thread | undefined {
     const ret = {
       mentions: [],
       pubKeys: [],
@@ -151,7 +151,7 @@ export abstract class EventExt {
   /**
    * Assign props if undefined
    */
-  static fixupEvent(e: NostrEvent) {
+  static fixupEvent(e: NostrEvent): void {
     e.tags ??= [];
     e.created_at ??= 0;
     e.content ??= "";
@@ -161,7 +161,7 @@ export abstract class EventExt {
     e.sig ??= "";
   }
 
-  static getType(kind: number) {
+  static getType(kind: number): EventType {
     const legacyReplaceable = [0, 3, 41];
     if (kind >= 30_000 && kind < 40_000) {
       return EventType.ParameterizedReplaceable;
@@ -174,7 +174,7 @@ export abstract class EventExt {
     }
   }
 
-  static isValid(ev: NostrEvent) {
+  static isValid(ev: NostrEvent): boolean {
     const type = EventExt.getType(ev.kind);
     if (type === EventType.ParameterizedReplaceable) {
       if (!findTag(ev, "d")) return false;

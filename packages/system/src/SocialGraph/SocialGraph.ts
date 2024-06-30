@@ -187,12 +187,12 @@ export default class SocialGraph {
   }
 
   // TODO subscription methods for followersByUser and followedByUser. and maybe messagesByTime. and replies
-  followerCount(address: HexKey) {
+  followerCount(address: HexKey): number {
     const id = ID(address);
     return this.followersByUser.get(id)?.size ?? 0;
   }
 
-  followedByFriendsCount(address: HexKey) {
+  followedByFriendsCount(address: HexKey): number {
     let count = 0;
     const id = ID(address);
     for (const follower of this.followersByUser.get(id) ?? []) {
@@ -203,7 +203,7 @@ export default class SocialGraph {
     return count;
   }
 
-  followedByFriends(address: HexKey) {
+  followedByFriends(address: HexKey): Set<string> {
     const id = ID(address);
     const set = new Set<HexKey>();
     for (const follower of this.followersByUser.get(id) ?? []) {

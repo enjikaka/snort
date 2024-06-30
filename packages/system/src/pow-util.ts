@@ -1,5 +1,5 @@
-import { sha256 } from "npm:@noble/hashes/sha256";
-import { bytesToHex } from "npm:@noble/hashes/utils";
+import { sha256 } from "npm:@noble/hashes@1.4.0/sha256";
+import { bytesToHex } from "npm:@noble/hashes@1.4.0/utils";
 
 export interface NostrPowEvent {
   id: string;

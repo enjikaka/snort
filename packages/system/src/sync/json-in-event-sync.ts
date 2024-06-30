@@ -1,6 +1,6 @@
 import { SafeSync, SafeSyncEvents } from "./safe-sync.ts";
 import { EventBuilder, EventSigner, NostrEvent, NostrLink, SystemInterface } from "../index.ts";
-import debug from "npm:debug";
+import debug from "npm:debug@4.3.5";
 import { EventEmitter } from "npm:eventemitter3@5.0.1";
 
 export class JsonEventSync<T> extends EventEmitter<SafeSyncEvents> {
