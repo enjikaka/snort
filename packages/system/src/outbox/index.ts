@@ -19,7 +19,7 @@ export type EventFetcher = {
   Fetch: SystemInterface["Fetch"];
 };
 
-export function parseRelayTag(tag: Array<string>) {
+export function parseRelayTag(tag: Array<string>): FullRelaySettings | undefined {
   if (tag[0] !== "r") return;
   const url = sanitizeRelayUrl(tag[1]);
   if (url) {
@@ -33,11 +33,11 @@ export function parseRelayTag(tag: Array<string>) {
   }
 }
 
-export function parseRelayTags(tag: Array<Array<string>>) {
+export function parseRelayTags(tag: Array<Array<string>>): FullRelaySettings[] | undefined {
   return removeUndefined(tag.map(parseRelayTag));
 }
 
-export function parseRelaysFromKind(ev: NostrEvent) {
+export function parseRelaysFromKind(ev: NostrEvent): FullRelaySettings[] | undefined {
   if (ev.kind === EventKind.ContactList) {
     const relaysInContent =
       ev.content.length > 0 ? (JSON.parse(ev.content) as Record<string, { read: boolean; write: boolean }>) : undefined;
@@ -65,7 +65,7 @@ export function parseRelaysFromKind(ev: NostrEvent) {
 /**
  * Convert relay settings into NIP-65 relay tag
  */
-export function settingsToRelayTag(rx: FullRelaySettings) {
+export function settingsToRelayTag(rx: FullRelaySettings): string[] | undefined {
   const rTag = ["r", rx.url];
   if (rx.settings.read && !rx.settings.write) {
     rTag.push("read");

@@ -28,7 +28,7 @@ export class NostrHashtagLink implements ToNostrEventTag {
     return otherTag?.at(0) === "t" && otherTag?.at(1) === this.tag;
   }
 
-  toEventTag() {
+  toEventTag(): string[] {
     return ["t", this.tag];
   }
 }
@@ -75,7 +75,7 @@ export class NostrLink implements ToNostrEventTag {
     }
   }
 
-  get tagKey() {
+  get tagKey(): string {
     if (this.type === NostrPrefix.Address) {
       return `${this.kind}:${this.author}:${this.id}`;
     }
@@ -85,7 +85,7 @@ export class NostrLink implements ToNostrEventTag {
   /**
    * Create an event tag for this link
    */
-  toEventTag(marker?: string) {
+  toEventTag(marker?: string): string[] | undefined {
     const suffix: Array<string> = [];
     if (this.relays && this.relays.length > 0) {
       suffix.push(this.relays[0]);
@@ -115,7 +115,7 @@ export class NostrLink implements ToNostrEventTag {
     }
   }
 
-  matchesEvent(ev: NostrEvent) {
+  matchesEvent(ev: NostrEvent): boolean {
     if (this.type === NostrPrefix.Address) {
       const dTag = findTag(ev, "d");
       if (dTag && dTag === this.id && unwrap(this.author) === ev.pubkey && unwrap(this.kind) === ev.kind) {
@@ -134,7 +134,7 @@ export class NostrLink implements ToNostrEventTag {
   /**
    * Is the supplied event a reply to this link
    */
-  isReplyToThis(ev: NostrEvent) {
+  isReplyToThis(ev: NostrEvent): boolean {
     const NonNip10Kinds = [EventKind.Reaction, EventKind.Repost, EventKind.ZapReceipt];
     if (NonNip10Kinds.includes(ev.kind)) {
       const links = removeUndefined(ev.tags.filter(a => a[0] === "e" || a[0] === "a").map(a => NostrLink.fromTag(a)));
@@ -166,7 +166,7 @@ export class NostrLink implements ToNostrEventTag {
   /**
    * Does the supplied event contain a tag matching this link
    */
-  referencesThis(ev: NostrEvent) {
+  referencesThis(ev: NostrEvent): boolean {
     for (const t of ev.tags) {
       if (t[0] === "e" && t[1] === this.id && (this.type === NostrPrefix.Event || this.type === NostrPrefix.Note)) {
         return true;
@@ -188,11 +188,11 @@ export class NostrLink implements ToNostrEventTag {
     return false;
   }
 
-  equals(other: NostrLink) {
+  equals(other: NostrLink): boolean {
     return other.tagKey === this.tagKey;
   }
 
-  static fromTag(tag: Array<string>, author?: string, kind?: number) {
+  static fromTag(tag: Array<string>, author?: string, kind?: number): NostrLink {
     const relays = tag.length > 2 ? [tag[2]] : undefined;
     switch (tag[0]) {
       case "e": {
@@ -209,7 +209,7 @@ export class NostrLink implements ToNostrEventTag {
     throw new Error("Unknown tag!");
   }
 
-  static fromTags(tags: ReadonlyArray<Array<string>>) {
+  static fromTags(tags: ReadonlyArray<Array<string>>): NostrLink[] {
     return removeUndefined(
       tags.map(a => {
         try {
@@ -236,7 +236,7 @@ export class NostrLink implements ToNostrEventTag {
     );
   }
 
-  static fromEvent(ev: TaggedNostrEvent | NostrEvent) {
+  static fromEvent(ev: TaggedNostrEvent | NostrEvent): NostrLink {
     const relays = "relays" in ev ? ev.relays : undefined;
 
     if (ev.kind >= 30_000 && ev.kind < 40_000) {
@@ -246,11 +246,11 @@ export class NostrLink implements ToNostrEventTag {
     return new NostrLink(NostrPrefix.Event, ev.id, ev.kind, ev.pubkey, relays);
   }
 
-  static profile(pk: string, relays?: Array<string>) {
+  static profile(pk: string, relays?: Array<string>): NostrLink {
     return new NostrLink(NostrPrefix.Profile, pk, undefined, undefined, relays);
   }
 
-  static publicKey(pk: string, relays?: Array<string>) {
+  static publicKey(pk: string, relays?: Array<string>): NostrLink {
     return new NostrLink(NostrPrefix.PublicKey, pk, undefined, undefined, relays);
   }
 }
@@ -279,7 +279,7 @@ export function tryParseNostrLink(link: string, prefixHint?: NostrPrefix): Nostr
   }
 }
 
-export function trimNostrLink(link: string) {
+export function trimNostrLink(link: string): string {
   let entity = link.startsWith("web+nostr:") || link.startsWith("nostr:") ? link.split(":")[1] : link;
 
   // trim any non-bech32 chars

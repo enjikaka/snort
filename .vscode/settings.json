@@ -16,5 +16,8 @@
   "typescript.enablePromptUseWorkspaceTsdk": true,
   "eslint.nodePath": ".yarn/sdks",
   "prettier.prettierPath": ".yarn/sdks/prettier/index.cjs",
-  "deno.enable": true
+  "deno.enable": true,
+  "deno.path": "/home/jeremy/.deno/bin/deno",
+  "editor.codeActionsOnSave": {},
+  "eslint.enable": false,
 }

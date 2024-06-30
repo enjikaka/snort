@@ -41,7 +41,7 @@ export class Nip10 {
     }
   }
 
-  static parseThread(ev: NostrEvent) {
+  static parseThread(ev: NostrEvent): Nip10Thread | undefined {
     const ret = {
       mentions: [],
       pubKeys: [],

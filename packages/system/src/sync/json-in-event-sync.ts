@@ -25,7 +25,7 @@ export class JsonEventSync<T> extends EventEmitter<SafeSyncEvents> {
     return Object.freeze(ret);
   }
 
-  async sync(signer: EventSigner | undefined, system: SystemInterface) {
+  async sync(signer: EventSigner | undefined, system: SystemInterface): Promise<NostrEvent | undefined> {
     const res = await this.#sync.sync(system);
     this.#log("Sync result %O", res);
     if (res) {

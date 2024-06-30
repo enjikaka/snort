@@ -1,7 +1,7 @@
 import { unwrap, bech32ToHex } from "npm:@snort/shared@1.0.16";
 import { secp256k1 } from "npm:@noble/curves/secp256k1";
 import { v4 as uuid } from "npm:uuid@9.0.1";
-import debug from "debug";
+import debug from "npm:debug";
 
 import { Connection } from "../connection.ts";
 import { EventSigner, PrivateKeySigner } from "../signer.ts";
@@ -86,17 +86,17 @@ export class Nip46Signer extends EventEmitter<Nip46Events> implements EventSigne
     return ["nip04"];
   }
 
-  get relays() {
+  get relays(): string[] {
     return [this.#relay];
   }
 
-  get privateKey() {
+  get privateKey(): string | undefined {
     if (this.#insideSigner instanceof PrivateKeySigner) {
       return this.#insideSigner.privateKey;
     }
   }
 
-  get isBunker() {
+  get isBunker(): boolean {
     return this.#proto === "bunker:";
   }
 
@@ -105,7 +105,7 @@ export class Nip46Signer extends EventEmitter<Nip46Events> implements EventSigne
    * @param autoConnect Start connect flow for pubkey
    * @returns
    */
-  async init(autoConnect = true) {
+  async init(autoConnect = true): Promise<void> {
     this.#localPubkey = await this.#insideSigner.getPubKey();
     return await new Promise<void>((resolve, reject) => {
       this.#conn = new Connection(this.#relay, { read: true, write: true });
@@ -159,23 +159,23 @@ export class Nip46Signer extends EventEmitter<Nip46Events> implements EventSigne
     }
   }
 
-  async describe() {
+  async describe(): Promise<string[]> {
     const rsp = await this.#rpc("describe", []);
     return rsp.result as Array<string>;
   }
 
-  async getPubKey() {
+  async getPubKey(): Promise<string> {
     //const rsp = await this.#rpc("get_public_key", []);
     //return rsp.result as string;
     return this.#remotePubkey!;
   }
 
-  async nip4Encrypt(content: string, otherKey: string) {
+  async nip4Encrypt(content: string, otherKey: string): Promise<string> {
     const rsp = await this.#rpc("nip04_encrypt", [otherKey, content]);
     return rsp.result as string;
   }
 
-  async nip4Decrypt(content: string, otherKey: string) {
+  async nip4Decrypt(content: string, otherKey: string): Promise<string> {
     const rsp = await this.#rpc("nip04_decrypt", [otherKey, content]);
     return rsp.result as string;
   }
@@ -188,7 +188,7 @@ export class Nip46Signer extends EventEmitter<Nip46Events> implements EventSigne
     throw new Error("Method not implemented.");
   }
 
-  async sign(ev: NostrEvent) {
+  async sign(ev: NostrEvent): Promise<any> {
     const rsp = await this.#rpc("sign_event", [JSON.stringify(ev)]);
     return JSON.parse(rsp.result as string);
   }

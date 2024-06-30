@@ -20,7 +20,7 @@ export class OutboxModel extends BaseRequestRouter {
     this.#fetcher = fetcher;
   }
 
-  static fromSystem(system: SystemInterface) {
+  static fromSystem(system: SystemInterface): OutboxModel {
     return new OutboxModel(system.relayCache, system);
   }
 
@@ -172,7 +172,7 @@ export class OutboxModel extends BaseRequestRouter {
    * @param pickN Number of relays to pick per recipient
    * @returns
    */
-  async forReply(ev: NostrEvent, pickN?: number) {
+  async forReply(ev: NostrEvent, pickN?: number): Promise<string[]> {
     const recipients = dedupe([ev.pubkey, ...ev.tags.filter(a => a[0] === "p").map(a => a[1])]);
     await this.updateRelayLists(recipients);
     const relays = this.pickTopRelays(recipients, pickN ?? DefaultPickNRelays, "read");

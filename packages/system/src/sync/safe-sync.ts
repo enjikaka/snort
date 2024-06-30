@@ -34,18 +34,18 @@ export class SafeSync extends EventEmitter<SafeSyncEvents> {
     super();
   }
 
-  get value() {
+  get value(): Readonly<NostrEvent> | undefined {
     return this.#base ? Object.freeze({ ...this.#base }) : undefined;
   }
 
-  get didSync() {
+  get didSync(): boolean {
     return this.#didSync;
   }
 
   /**
    * Fetch the latest version
    */
-  async sync(system: SystemInterface) {
+  async sync(system: SystemInterface): Promise<NostrEvent | undefined> {
     if (this.link.kind === undefined || this.link.author === undefined) {
       throw new Error("Kind must be set");
     }

@@ -102,7 +102,7 @@ export class EventPublisher {
     return await this.#signer.nip4Decrypt(content, otherKey);
   }
 
-  async nip42Auth(challenge: string, relay: string) {
+  async nip42Auth(challenge: string, relay: string): Promise<NostrEvent> {
     const eb = this.#eb(EventKind.Auth);
     eb.tag(["relay", relay]);
     eb.tag(["challenge", challenge]);
@@ -114,7 +114,7 @@ export class EventPublisher {
    * @param pub Public mute list
    * @param priv Private mute list
    */
-  async muted(pub: Array<string>, priv: Array<string>) {
+  async muted(pub: Array<string>, priv: Array<string>): Promise<NostrEvent> {
     const eb = this.#eb(EventKind.MuteList);
     pub.forEach(p => {
       eb.tag(["p", p]);
@@ -130,7 +130,7 @@ export class EventPublisher {
   /**
    * Build a pin list event using lists of event links
    */
-  async pinned(notes: Array<ToNostrEventTag>) {
+  async pinned(notes: Array<ToNostrEventTag>): Promise<NostrEvent> {
     const eb = this.#eb(EventKind.PinList);
     notes.forEach(n => {
       eb.tag(unwrap(n.toEventTag()));
@@ -142,7 +142,7 @@ export class EventPublisher {
    * Build a categorized bookmarks event with a given label
    * @param notes List of bookmarked links
    */
-  async bookmarks(notes: Array<ToNostrEventTag>) {
+  async bookmarks(notes: Array<ToNostrEventTag>): Promise<NostrEvent> {
     const eb = this.#eb(EventKind.BookmarksList);
     notes.forEach(n => {
       eb.tag(unwrap(n.toEventTag()));
@@ -150,7 +150,7 @@ export class EventPublisher {
     return await this.#sign(eb);
   }
 
-  async metadata(obj: UserMetadata) {
+  async metadata(obj: UserMetadata): Promise<NostrEvent> {
     const eb = this.#eb(EventKind.SetMetadata);
     eb.content(JSON.stringify(obj));
     return await this.#sign(eb);
@@ -159,7 +159,7 @@ export class EventPublisher {
   /**
    * Create a basic text note
    */
-  async note(msg: string, fnExtra?: EventBuilderHook) {
+  async note(msg: string, fnExtra?: EventBuilderHook): Promise<NostrEvent> {
     const eb = this.#eb(EventKind.TextNote);
     eb.content(msg);
     eb.processContent();
@@ -181,7 +181,7 @@ export class EventPublisher {
     note?: NostrLink,
     msg?: string,
     fnExtra?: EventBuilderHook,
-  ) {
+  ): Promise<NostrEvent> {
     const eb = this.#eb(EventKind.ZapRequest);
     eb.content(msg?.trim() ?? "");
     if (note) {
@@ -199,7 +199,7 @@ export class EventPublisher {
   /**
    * Reply to a note
    */
-  async reply(replyTo: TaggedNostrEvent, msg: string, fnExtra?: EventBuilderHook) {
+  async reply(replyTo: TaggedNostrEvent, msg: string, fnExtra?: EventBuilderHook): Promise<NostrEvent> {
     const eb = this.#eb(EventKind.TextNote);
     eb.content(msg);
 
@@ -209,7 +209,7 @@ export class EventPublisher {
     return await this.#sign(eb);
   }
 
-  async react(evRef: NostrEvent, content = "+") {
+  async react(evRef: NostrEvent, content = "+"): Promise<NostrEvent> {
     const eb = this.#eb(EventKind.Reaction);
     eb.content(content);
     eb.tag(unwrap(NostrLink.fromEvent(evRef).toEventTag()));
@@ -217,7 +217,7 @@ export class EventPublisher {
     return await this.#sign(eb);
   }
 
-  async relayList(relays: Array<FullRelaySettings> | Record<string, RelaySettings>) {
+  async relayList(relays: Array<FullRelaySettings> | Record<string, RelaySettings>): Promise<NostrEvent> {
     if (!Array.isArray(relays)) {
       relays = Object.entries(relays).map(([k, v]) => ({
         url: k,
@@ -234,7 +234,7 @@ export class EventPublisher {
     return await this.#sign(eb);
   }
 
-  async contactList(tags: Array<[string, string]>, relays?: Record<string, RelaySettings>) {
+  async contactList(tags: Array<[string, string]>, relays?: Record<string, RelaySettings>): Promise<NostrEvent> {
     const eb = this.#eb(EventKind.ContactList);
     tags.forEach(a => eb.tag(a));
     if (relays) {
@@ -246,7 +246,7 @@ export class EventPublisher {
   /**
    * Delete an event (NIP-09)
    */
-  async delete(id: u256) {
+  async delete(id: u256): Promise<NostrEvent> {
     const eb = this.#eb(EventKind.Deletion);
     eb.tag(["e", id]);
     return await this.#sign(eb);
@@ -255,7 +255,7 @@ export class EventPublisher {
   /**
    * Repost a note (NIP-18)
    */
-  async repost(note: NostrEvent) {
+  async repost(note: NostrEvent): Promise<NostrEvent> {
     const eb = this.#eb(EventKind.Repost);
     eb.tag(unwrap(NostrLink.fromEvent(note).toEventTag()));
     eb.tag(["p", note.pubkey]);
@@ -265,7 +265,7 @@ export class EventPublisher {
   /**
    * Generic decryption using NIP-23 payload scheme
    */
-  async decryptGeneric(content: string, from: string) {
+  async decryptGeneric(content: string, from: string): Promise<string> {
     const pl = decodeEncryptionPayload(content);
     switch (pl.v) {
       case MessageEncryptorVersion.Nip4: {
@@ -279,7 +279,7 @@ export class EventPublisher {
     throw new Error("Not supported version");
   }
 
-  async decryptDm(note: NostrEvent) {
+  async decryptDm(note: NostrEvent): Promise<string> {
     if (note.kind === EventKind.SealedRumor) {
       const unseal = await this.unsealRumor(note);
       return unseal.content;
@@ -295,21 +295,21 @@ export class EventPublisher {
     return await this.nip4Decrypt(note.content, otherPubKey);
   }
 
-  async sendDm(content: string, to: HexKey) {
+  async sendDm(content: string, to: HexKey): Promise<NostrEvent> {
     const eb = this.#eb(EventKind.DirectMessage);
     eb.content(await this.nip4Encrypt(content, to));
     eb.tag(["p", to]);
     return await this.#sign(eb);
   }
 
-  async generic(fnHook: EventBuilderHook) {
+  async generic(fnHook: EventBuilderHook): Promise<NostrEvent> {
     const eb = new EventBuilder();
     eb.pubKey(this.#pubKey);
     fnHook(eb);
     return await this.#sign(eb);
   }
 
-  async appData(data: object, id: string) {
+  async appData(data: object, id: string): Promise<NostrEvent> {
     const eb = this.#eb(EventKind.AppData);
     eb.content(await this.nip4Encrypt(JSON.stringify(data), this.#pubKey));
     eb.tag(["d", id]);
@@ -319,7 +319,7 @@ export class EventPublisher {
   /**
    * NIP-59 Gift Wrap event with ephemeral key
    */
-  async giftWrap(inner: NostrEvent, explicitP?: string, powTarget?: number, powMiner?: PowMiner) {
+  async giftWrap(inner: NostrEvent, explicitP?: string, powTarget?: number, powMiner?: PowMiner): Promise<NostrEvent> {
     const secret = utils.bytesToHex(secp.secp256k1.utils.randomPrivateKey());
     const signer = new PrivateKeySigner(secret);
 
@@ -338,7 +338,7 @@ export class EventPublisher {
     return await eb.buildAndSign(secret);
   }
 
-  async unwrapGift(gift: NostrEvent) {
+  async unwrapGift(gift: NostrEvent): Promise<NostrEvent> {
     const body = await this.#signer.nip44Decrypt(gift.content, gift.pubkey);
     return JSON.parse(body) as NostrEvent;
   }
@@ -346,7 +346,7 @@ export class EventPublisher {
   /**
    * Create an unsigned gossip message
    */
-  createUnsigned(kind: EventKind, content: string, fnHook: EventBuilderHook) {
+  createUnsigned(kind: EventKind, content: string, fnHook: EventBuilderHook): NotSignedNostrEvent {
     const eb = new EventBuilder();
     eb.pubKey(this.pubKey);
     eb.kind(kind);
@@ -358,7 +358,7 @@ export class EventPublisher {
   /**
    * Create sealed rumor
    */
-  async sealRumor(inner: NotSignedNostrEvent, toKey: string) {
+  async sealRumor(inner: NotSignedNostrEvent, toKey: string): Promise<NostrEvent> {
     const eb = this.#eb(EventKind.SealedRumor);
     eb.content(await this.#signer.nip44Encrypt(JSON.stringify(inner), toKey));
     return await this.#sign(eb);
@@ -367,7 +367,7 @@ export class EventPublisher {
   /**
    * Unseal rumor
    */
-  async unsealRumor(inner: NostrEvent) {
+  async unsealRumor(inner: NostrEvent): Promise<NostrEvent> {
     if (inner.kind !== EventKind.SealedRumor) throw new Error("Not a sealed rumor event");
     const body = await this.#signer.nip44Decrypt(inner.content, inner.pubkey);
     return JSON.parse(body) as NostrEvent;

@@ -26,13 +26,13 @@ export class RangeSync extends EventEmitter<RangeSyncEvents> {
     super();
   }
 
-  static forSystem(system: SystemInterface) {
+  static forSystem(system: SystemInterface): RangeSync {
     const rs = new RangeSync();
     rs.#fetcher = (r, c) => system.Fetch(r, c);
     return rs;
   }
 
-  static forFetcher(fn: SystemInterface["Fetch"]) {
+  static forFetcher(fn: SystemInterface["Fetch"]): RangeSync {
     const rs = new RangeSync();
     rs.#fetcher = fn;
     return rs;

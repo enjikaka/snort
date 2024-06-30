@@ -31,7 +31,7 @@ export abstract class HookedNoteStore extends NoteStore {
   #nextEmit?: ReturnType<typeof setTimeout>;
   #bufEmit: Array<TaggedNostrEvent> = [];
 
-  get snapshot() {
+  get snapshot(): NoteStoreSnapshotData {
     return this.#storeSnapshot;
   }
 
@@ -88,7 +88,7 @@ export class KeyedReplaceableNoteStore extends HookedNoteStore {
     this.onChange([]);
   }
 
-  takeSnapshot() {
+  takeSnapshot(): TaggedNostrEvent[] {
     return [...this.#events.values()];
   }
 }

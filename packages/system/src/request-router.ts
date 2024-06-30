@@ -53,7 +53,7 @@ export abstract class BaseRequestRouter implements RequestRouter {
   abstract forRequest(filter: ReqFilter, pickN?: number): Array<ReqFilter>;
   abstract forFlatRequest(filter: FlatReqFilter[], pickN?: number): Array<FlatReqFilter>;
 
-  forAllRequest(filters: Array<ReqFilter>) {
+  forAllRequest(filters: Array<ReqFilter>): Array<ReqFilter> {
     const allSplit = filters
       .map(a => this.forRequest(a))
       .reduce((acc, v) => {

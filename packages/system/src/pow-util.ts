@@ -11,7 +11,7 @@ export interface NostrPowEvent {
   sig: string;
 }
 
-export function minePow(e: NostrPowEvent, target: number) {
+export function minePow(e: NostrPowEvent, target: number): NostrPowEvent {
   let ctr = 0;
 
   let nonceTagIdx = e.tags.findIndex(a => a[0] === "nonce");
@@ -32,7 +32,7 @@ function createId(e: NostrPowEvent) {
   return bytesToHex(sha256(JSON.stringify(payload)));
 }
 
-export function countLeadingZeros(hex: string) {
+export function countLeadingZeros(hex: string): number {
   let count = 0;
 
   for (let i = 0; i < hex.length; i++) {

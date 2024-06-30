@@ -145,21 +145,21 @@ export class UserState<TAppData> extends EventEmitter<UserStateEvents> {
     }
   }
 
-  get version() {
+  get version(): number {
     return this.#version;
   }
 
   /**
    * Users profile
    */
-  get profile() {
+  get profile(): Readonly<UserMetadata> | undefined {
     return this.#profile.json ?? this.#stateObj?.profile;
   }
 
   /**
    * Users configured relays
    */
-  get relays() {
+  get relays(): FullRelaySettings[] | undefined {
     if (this.#relays.value) {
       return parseRelayTags(this.#relays.tags);
     } else if (this.#contacts.value) {
@@ -172,7 +172,7 @@ export class UserState<TAppData> extends EventEmitter<UserStateEvents> {
   /**
    * Followed pubkeys
    */
-  get follows() {
+  get follows(): string[] | undefined {
     if (this.#contacts.value) {
       const pTags = this.#contacts.tags.filter(a => a[0] === "p" && a[1].length === 64).map(a => a[1]) ?? [];
       return dedupe(pTags);
@@ -184,14 +184,14 @@ export class UserState<TAppData> extends EventEmitter<UserStateEvents> {
   /**
    * App specific data
    */
-  get appdata() {
+  get appdata(): TAppData | undefined {
     return this.#appdata?.json ?? this.#stateObj?.appdata;
   }
 
   /**
    * Get the standard mute list
    */
-  get muted() {
+  get muted(): Array<ToNostrEventTag> {
     const list = this.#standardLists.get(EventKind.MuteList);
     if (list) {
       return NostrLink.fromAllTags(list.encryptedTags);
@@ -393,7 +393,7 @@ export class UserState<TAppData> extends EventEmitter<UserStateEvents> {
     await this.removeFromList(EventKind.MuteList, link, autoCommit, true);
   }
 
-  isOnList(kind: EventKind, link: ToNostrEventTag) {
+  isOnList(kind: EventKind, link: ToNostrEventTag): boolean {
     const list = this.#standardLists.get(kind);
     const tag = link.toEventTag();
     if (list && tag) {

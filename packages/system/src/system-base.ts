@@ -11,7 +11,7 @@ import { EventEmitter } from "npm:eventemitter3@5.0.1";
 export abstract class SystemBase extends EventEmitter<NostrSystemEvents> {
   #config: SystemConfig;
 
-  get config() {
+  get config(): SystemConfig {
     return this.#config;
   }
 

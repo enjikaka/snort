@@ -32,14 +32,14 @@ export class DiffSyncTags extends EventEmitter<SafeSyncEvents> {
   /**
    * Get the raw storage event
    */
-  get value() {
+  get value(): Readonly<NostrEvent> | undefined {
     return this.#sync.value;
   }
 
   /**
    * Get the current tag set
    */
-  get tags() {
+  get tags(): Array<Array<string>> {
     const next = this.#nextEvent();
     return next.tags;
   }
@@ -47,7 +47,7 @@ export class DiffSyncTags extends EventEmitter<SafeSyncEvents> {
   /**
    * Get decrypted content
    */
-  get encryptedTags() {
+  get encryptedTags(): Array<Array<string>> {
     if (this.#decryptedContent && this.#decryptedContent.startsWith("[") && this.#decryptedContent.endsWith("]")) {
       const tags = JSON.parse(this.#decryptedContent) as Array<Array<string>>;
       return tags;

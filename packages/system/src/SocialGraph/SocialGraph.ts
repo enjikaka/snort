@@ -3,11 +3,11 @@ import { HexKey, NostrEvent } from "../index.ts";
 
 export default class SocialGraph {
   root: UID;
-  followDistanceByUser = new Map<UID, number>();
-  usersByFollowDistance = new Map<number, Set<UID>>();
-  followedByUser = new Map<UID, Set<UID>>();
-  followersByUser = new Map<UID, Set<UID>>();
-  latestFollowEventTimestamps = new Map<UID, number>();
+  followDistanceByUser: Map<UID, number> = new Map();
+  usersByFollowDistance: Map<number, Set<UID>> = new Map();
+  followedByUser: Map<UID, Set<UID>> = new Map();
+  followersByUser: Map<UID, Set<UID>> = new Map();
+  latestFollowEventTimestamps: Map<UID, number> = new Map();
 
   constructor(root: HexKey) {
     this.root = ID(root);
@@ -236,4 +236,4 @@ export default class SocialGraph {
   }
 }
 
-export const socialGraphInstance = new SocialGraph("");
+export const socialGraphInstance: SocialGraph = new SocialGraph("");

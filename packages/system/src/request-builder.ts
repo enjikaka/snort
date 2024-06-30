@@ -1,4 +1,4 @@
-import debug from "debug";
+import debug from "npm:debug";
 import { v4 as uuid } from "npm:uuid@9.0.1";
 import { appendDedupe, dedupe, removeUndefined, sanitizeRelayUrl, unixNowMs, unwrap } from "npm:@snort/shared@1.0.16";
 
@@ -67,41 +67,41 @@ export class RequestBuilder {
     this.#builders = [];
   }
 
-  get numFilters() {
+  get numFilters(): number {
     return this.#builders.length;
   }
 
-  get filterBuilders() {
+  get filterBuilders(): RequestFilterBuilder[] {
     return this.#builders;
   }
 
-  get options() {
+  get options(): RequestBuilderOptions | undefined {
     return this.#options;
   }
 
   /**
    * Add another request builders filters to this one
    */
-  add(other: RequestBuilder) {
+  add(other: RequestBuilder): void {
     this.#builders.push(...other.#builders);
     this.#rawCached = undefined;
   }
 
-  withFilter() {
+  withFilter(): RequestFilterBuilder {
     const ret = new RequestFilterBuilder();
     this.#builders.push(ret);
     this.#rawCached = undefined;
     return ret;
   }
 
-  withBareFilter(f: ReqFilter) {
+  withBareFilter(f: ReqFilter): RequestFilterBuilder {
     const ret = new RequestFilterBuilder(f);
     this.#builders.push(ret);
     this.#rawCached = undefined;
     return ret;
   }
 
-  withOptions(opt: RequestBuilderOptions) {
+  withOptions(opt: RequestBuilderOptions): this {
     this.#options = {
       ...this.#options,
       ...opt,
@@ -183,7 +183,7 @@ export class RequestFilterBuilder {
     this.#filter = f ?? {};
   }
 
-  get filter() {
+  get filter(): ReqFilter {
     return {
       ...this.#filter,
     };
@@ -192,7 +192,7 @@ export class RequestFilterBuilder {
   /**
    * Use a specific relay for this request filter
    */
-  relay(u: string | Array<string>) {
+  relay(u: string | Array<string>): this {
     const relays = Array.isArray(u) ? u : [u];
     this.#filter.relays = appendDedupe(this.#filter.relays, removeUndefined(relays.map(a => sanitizeRelayUrl(a))));
     // make sure we dont have an empty array
@@ -202,43 +202,43 @@ export class RequestFilterBuilder {
     return this;
   }
 
-  ids(ids: Array<u256>) {
+  ids(ids: Array<u256>): this {
     this.#filter.ids = appendDedupe(this.#filter.ids, ids);
     return this;
   }
 
-  authors(authors?: Array<HexKey>) {
+  authors(authors?: Array<HexKey>): this {
     if (!authors) return this;
     this.#filter.authors = appendDedupe(this.#filter.authors, authors);
     this.#filter.authors = this.#filter.authors.filter(a => a.length === 64);
     return this;
   }
 
-  kinds(kinds?: Array<EventKind>) {
+  kinds(kinds?: Array<EventKind>): this {
     if (!kinds) return this;
     this.#filter.kinds = appendDedupe(this.#filter.kinds, kinds);
     return this;
   }
 
-  since(since?: number) {
+  since(since?: number): this {
     if (!since) return this;
     this.#filter.since = since;
     return this;
   }
 
-  until(until?: number) {
+  until(until?: number): this {
     if (!until) return this;
     this.#filter.until = until;
     return this;
   }
 
-  limit(limit?: number) {
+  limit(limit?: number): this {
     if (!limit) return this;
     this.#filter.limit = limit;
     return this;
   }
 
-  tag(key: "e" | "p" | "d" | "t" | "r" | "a" | "g" | string, value?: Array<string>) {
+  tag(key: "e" | "p" | "d" | "t" | "r" | "a" | "g" | string, value?: Array<string>): this {
     if (!value) return this;
     this.#filter[`#${key}`] = appendDedupe(this.#filter[`#${key}`] as Array<string>, value);
     return this;
@@ -247,7 +247,7 @@ export class RequestFilterBuilder {
   /**
    * Query by a nostr tag
    */
-  tags(tags: Array<ToNostrEventTag>) {
+  tags(tags: Array<ToNostrEventTag>): this {
     for (const tag of tags) {
       const tt = tag.toEventTag();
       if (tt) {
@@ -257,7 +257,7 @@ export class RequestFilterBuilder {
     return this;
   }
 
-  search(keyword?: string) {
+  search(keyword?: string): this {
     if (!keyword) return this;
     this.#filter.search = keyword;
     return this;
@@ -266,7 +266,7 @@ export class RequestFilterBuilder {
   /**
    * Get event from link
    */
-  link(link: NostrLink) {
+  link(link: NostrLink): this {
     if (link.type === NostrPrefix.Address) {
       this.tag("d", [link.id])
         .kinds([unwrap(link.kind)])
@@ -289,7 +289,7 @@ export class RequestFilterBuilder {
   /**
    * Get replies to link with e/a tags
    */
-  replyToLink(links: Array<NostrLink>) {
+  replyToLink(links: Array<NostrLink>): this {
     const types = dedupe(links.map(a => a.type));
     if (types.length > 1) throw new Error("Cannot add multiple links of different kinds");
 

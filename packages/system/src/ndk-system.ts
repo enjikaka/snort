@@ -197,7 +197,7 @@ export class NDKSystem extends SystemBase implements SystemInterface {
     return this.#queryManager.get(id);
   }
 
-  Fetch(req: RequestBuilder, cb?: (evs: Array<TaggedNostrEvent>) => void) {
+  Fetch(req: RequestBuilder, cb?: (evs: Array<TaggedNostrEvent>) => void): Promise<TaggedNostrEvent[]> {
     return this.#queryManager.fetch(req, cb);
   }
 
@@ -205,15 +205,15 @@ export class NDKSystem extends SystemBase implements SystemInterface {
     return this.#queryManager.query(req);
   }
 
-  async ConnectToRelay(address: string, options: RelaySettings) {
+  async ConnectToRelay(address: string, options: RelaySettings): Promise<void> {
     await this.pool.connect(address, options, false);
   }
 
-  ConnectEphemeralRelay(address: string) {
+  ConnectEphemeralRelay(address: string): Promise<ConnectionType | undefined> {
     return this.pool.connect(address, { read: true, write: true }, true);
   }
 
-  DisconnectRelay(address: string) {
+  DisconnectRelay(address: string): void {
     this.pool.disconnect(address);
   }
 

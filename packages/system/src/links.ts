@@ -1,5 +1,5 @@
-import * as utils from "@noble/curves/abstract/utils";
-import { bech32 } from "@scure/base";
+import * as utils from "npm:@noble/curves/abstract/utils";
+import { bech32 } from "npm:@scure/base";
 import { HexKey } from "./nostr.ts";
 
 export enum NostrPrefix {
@@ -28,7 +28,7 @@ export interface TLVEntry {
   value: string | HexKey | number;
 }
 
-export function encodeTLV(prefix: NostrPrefix, id: string, relays?: string[], kind?: number, author?: string) {
+export function encodeTLV(prefix: NostrPrefix, id: string, relays?: string[], kind?: number, author?: string): `npub1${string}` | `nsec1${string}` | `note1${string}` | `nprofile1${string}` | `nevent1${string}` | `nrelay1${string}` | `naddr1${string}` | `nreq1${string}` {
   const enc = new TextEncoder();
   const buf = prefix === NostrPrefix.Address ? enc.encode(id) : utils.hexToBytes(id);
 
@@ -47,7 +47,7 @@ export function encodeTLV(prefix: NostrPrefix, id: string, relays?: string[], ki
   return bech32.encode(prefix, bech32.toWords(new Uint8Array([...tl0, ...tl1, ...tl2, ...tl3])), 1_000);
 }
 
-export function encodeTLVEntries(prefix: NostrPrefix, ...entries: Array<TLVEntry>) {
+export function encodeTLVEntries(prefix: NostrPrefix, ...entries: Array<TLVEntry>): `npub1${string}` | `nsec1${string}` | `note1${string}` | `nprofile1${string}` | `nevent1${string}` | `nrelay1${string}` | `naddr1${string}` | `nreq1${string}`{
   const enc = new TextEncoder();
   const buffers: Array<number> = [];
 
@@ -81,7 +81,7 @@ export function encodeTLVEntries(prefix: NostrPrefix, ...entries: Array<TLVEntry
   return bech32.encode(prefix, bech32.toWords(new Uint8Array(buffers)), 1_000);
 }
 
-export function decodeTLV(str: string) {
+export function decodeTLV(str: string): TLVEntry[] {
   const decoded = bech32.decode(str, 1_000);
   const data = bech32.fromWords(decoded.words);
 

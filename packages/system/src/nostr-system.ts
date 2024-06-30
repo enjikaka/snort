@@ -17,7 +17,7 @@ import {
   SystemConfig,
 } from "./index.ts";
 import { RelayMetadataLoader } from "./outbox/index.ts";
-import { ConnectionPool, DefaultConnectionPool } from "./connection-pool.ts";
+import { ConnectionPool, ConnectionType, DefaultConnectionPool } from "./connection-pool.ts";
 import { QueryManager } from "./query-manager.ts";
 import { RequestRouter } from "./request-router.ts";
 import { SystemBase } from "./system-base.ts";
@@ -148,11 +148,11 @@ export class NostrSystem extends SystemBase implements SystemInterface {
     }
   }
 
-  async ConnectToRelay(address: string, options: RelaySettings) {
+  async ConnectToRelay(address: string, options: RelaySettings): Promise<void> {
     await this.pool.connect(address, options, false);
   }
 
-  ConnectEphemeralRelay(address: string) {
+  ConnectEphemeralRelay(address: string): Promise<ConnectionType | undefined> {
     return this.pool.connect(address, { read: true, write: true }, true);
   }
 
@@ -164,7 +164,7 @@ export class NostrSystem extends SystemBase implements SystemInterface {
     return this.#queryManager.get(id);
   }
 
-  Fetch(req: RequestBuilder, cb?: (evs: Array<TaggedNostrEvent>) => void) {
+  Fetch(req: RequestBuilder, cb?: (evs: Array<TaggedNostrEvent>) => void): Promise<TaggedNostrEvent[]> {
     return this.#queryManager.fetch(req, cb);
   }
 

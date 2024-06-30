@@ -207,7 +207,7 @@ function extractTagRefs(fragments: Fragment[], tags: Array<Array<string>>) {
     .flat();
 }
 
-function extractCustomEmoji(fragments: Fragment[], tags: Array<Array<string>>) {
+function extractCustomEmoji(fragments: Fragment[], tags: Array<Array<string>>): (string | ParsedFragment)[] {
   return fragments
     .map(f => {
       if (typeof f === "string") {
@@ -253,7 +253,7 @@ function extractMarkdownCode(fragments: Fragment[]): (string | ParsedFragment)[]
     .flat();
 }
 
-export function parseIMeta(tags: Array<Array<string>>) {
+export function parseIMeta(tags: Array<Array<string>>): Record<string, IMeta> | undefined {
   let ret: Record<string, IMeta> | undefined;
   const imetaTags = tags.filter(a => a[0] === "imeta");
   for (const imetaTag of imetaTags) {
@@ -285,7 +285,7 @@ export function parseIMeta(tags: Array<Array<string>>) {
   return ret;
 }
 
-export function parseInlineMetaHack(u: URL) {
+export function parseInlineMetaHack(u: URL): IMeta | undefined {
   if (u.hash) {
     const params = new URLSearchParams(u.hash.substring(1));
 
@@ -304,7 +304,7 @@ export function parseInlineMetaHack(u: URL) {
   }
 }
 
-export function transformText(body: string, tags: Array<Array<string>>) {
+export function transformText(body: string, tags: Array<Array<string>>): ParsedFragment[] {
   let fragments = extractLinks([body]);
   fragments = extractMentions(fragments);
   fragments = extractTagRefs(fragments, tags);

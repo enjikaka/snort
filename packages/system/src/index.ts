@@ -1,4 +1,4 @@
-import { base64 } from "@scure/base";
+import { base64 } from "npm:@scure/base";
 
 export { NostrSystem } from "./nostr-system.ts";
 export { NDKSystem } from "./ndk-system.ts";
@@ -85,6 +85,6 @@ export function decodeEncryptionPayload(p: string): MessageEncryptorPayload {
   }
 }
 
-export function encodeEncryptionPayload(p: MessageEncryptorPayload) {
+export function encodeEncryptionPayload(p: MessageEncryptorPayload): string {
   return base64.encode(new Uint8Array([p.v, ...p.nonce, ...p.ciphertext]));
 }

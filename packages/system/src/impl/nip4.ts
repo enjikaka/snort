@@ -2,13 +2,13 @@ import { MessageEncryptor, MessageEncryptorPayload, MessageEncryptorVersion } fr
 import { secp256k1 } from "npm:@noble/curves/secp256k1";
 
 export class Nip4WebCryptoEncryptor implements MessageEncryptor {
-  getSharedSecret(privateKey: string, publicKey: string) {
+  getSharedSecret(privateKey: string, publicKey: string): Uint8Array {
     const sharedPoint = secp256k1.getSharedSecret(privateKey, "02" + publicKey);
     const sharedX = sharedPoint.slice(1, 33);
     return sharedX;
   }
 
-  async encryptData(content: string, sharedSecet: Uint8Array) {
+  async encryptData(content: string, sharedSecet: Uint8Array): Promise<MessageEncryptorPayload> {
     const key = await this.#importKey(sharedSecet);
     const iv = window.crypto.getRandomValues(new Uint8Array(16));
     const data = new TextEncoder().encode(content);
@@ -27,7 +27,7 @@ export class Nip4WebCryptoEncryptor implements MessageEncryptor {
     } as MessageEncryptorPayload;
   }
 
-  async decryptData(payload: MessageEncryptorPayload, sharedSecet: Uint8Array) {
+  async decryptData(payload: MessageEncryptorPayload, sharedSecet: Uint8Array): Promise<string> {
     const key = await this.#importKey(sharedSecet);
     const result = await window.crypto.subtle.decrypt(
       {

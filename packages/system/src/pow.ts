@@ -35,7 +35,7 @@ export class PowWorker implements PowMiner {
     };
   }
 
-  minePow(ev: NostrEvent, target: number) {
+  minePow(ev: NostrEvent, target: number): Promise<NostrEvent> {
     return new Promise<NostrEvent>((resolve, reject) => {
       const req = {
         id: uuid(),
