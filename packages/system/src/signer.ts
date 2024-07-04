@@ -1,5 +1,5 @@
 import { bytesToHex } from "npm:@noble/curves@1.4.0/abstract/utils";
-import { getPublicKey } from "npm:@snort/shared@1.0.16";
+import { getPublicKey } from "@enjikaka/snort-shared";
 import { EventExt } from "./event-ext.ts";
 import { Nip4WebCryptoEncryptor } from "./impl/nip4.ts";
 import { XChaCha20Encryptor } from "./impl/nip44.ts";

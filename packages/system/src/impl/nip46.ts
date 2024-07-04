@@ -1,4 +1,4 @@
-import { unwrap, bech32ToHex } from "npm:@snort/shared@1.0.16";
+import { unwrap, bech32ToHex } from "@enjikaka/snort-shared";
 import { secp256k1 } from "npm:@noble/curves@1.4.0/secp256k1";
 import { v4 as uuid } from "npm:uuid@9.0.1";
 import debug from "npm:debug@4.3.5";

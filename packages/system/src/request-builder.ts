@@ -1,6 +1,6 @@
 import debug from "npm:debug@4.3.5";
 import { v4 as uuid } from "npm:uuid@9.0.1";
-import { appendDedupe, dedupe, removeUndefined, sanitizeRelayUrl, unixNowMs, unwrap } from "npm:@snort/shared@1.0.16";
+import { appendDedupe, dedupe, removeUndefined, sanitizeRelayUrl, unixNowMs, unwrap } from "@enjikaka/snort-shared";
 
 import EventKind from "./event-kind.ts";
 import { FlatReqFilter, NostrLink, NostrPrefix, SystemInterface, ToNostrEventTag } from "./index.ts";

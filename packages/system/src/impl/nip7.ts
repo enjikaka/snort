@@ -1,4 +1,4 @@
-import { WorkQueueItem, processWorkQueue, barrierQueue, unwrap } from "npm:@snort/shared@1.0.16";
+import { WorkQueueItem, processWorkQueue, barrierQueue, unwrap } from "@enjikaka/snort-shared";
 import { EventSigner, NostrEvent } from "../index.ts";
 
 const Nip7Queue: Array<WorkQueueItem> = [];

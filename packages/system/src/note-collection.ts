@@ -1,4 +1,4 @@
-import { SortedMap, dedupe } from "npm:@snort/shared@1.0.16";
+import { SortedMap, dedupe } from "@enjikaka/snort-shared";
 import { EventExt, EventType, TaggedNostrEvent } from "./index.ts";
 import { findTag } from "./utils.ts";
 import { EventEmitter } from "npm:eventemitter3@5.0.1";

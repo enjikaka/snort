@@ -1,6 +1,6 @@
-import debug from "debug";
+import debug from "npm:debug";
 
-import { unixNowMs } from "npm:@snort/shared@1.0.16";
+import { unixNowMs } from "@enjikaka/snort-shared";
 import { NostrEvent, TaggedNostrEvent, OkResponse } from "./nostr.ts";
 import { RelaySettings } from "./connection.ts";
 import { BuiltRawReqFilter, RequestBuilder } from "./request-builder.ts";

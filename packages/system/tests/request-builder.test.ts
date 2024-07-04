@@ -2,7 +2,7 @@ import { RelayCache } from "../src/outbox-model";
 import { RequestBuilder, RequestStrategy } from "../src/request-builder";
 import { describe, expect } from "@jest/globals";
 import { bytesToHex } from "@noble/curves/abstract/utils";
-import { FeedCache, unixNow, unixNowMs } from "npm:@snort/shared@1.0.16";
+import { FeedCache, unixNow, unixNowMs } from "@enjikaka/snort-shared";
 import { NostrSystem, UsersRelays } from "../src";
 
 const DummyCache = {

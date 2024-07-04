@@ -1,7 +1,7 @@
 import { v4 as uuid } from "npm:uuid@9.0.1";
 import debug from "debug";
 import { EventEmitter } from "npm:eventemitter3@5.0.1";
-import { unixNowMs, unwrap } from "npm:@snort/shared@1.0.16";
+import { unixNowMs, unwrap } from "@enjikaka/snort-shared";
 
 import { ReqFilter, Nips, TaggedNostrEvent, SystemInterface, ParsedFragment } from "./index.ts";
 import { NoteCollection } from "./note-collection.ts";

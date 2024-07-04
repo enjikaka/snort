@@ -1,4 +1,4 @@
-import { removeUndefined, sanitizeRelayUrl, unwrap } from "npm:@snort/shared@1.0.16";
+import { removeUndefined, sanitizeRelayUrl, unwrap } from "@enjikaka/snort-shared";
 import debug from "debug";
 import { EventEmitter } from "npm:eventemitter3@5.0.1";
 

@@ -1,4 +1,4 @@
-import { distance } from "npm:@snort/shared@1.0.16";
+import { distance } from "@enjikaka/snort-shared";
 import { ReqFilter } from "../index.ts";
 import { FlatReqFilter } from "./index.ts";
 

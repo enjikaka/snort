@@ -1,4 +1,4 @@
-import { CachedTable, unixNowMs } from "npm:@snort/shared@1.0.16";
+import { CachedTable, unixNowMs } from "@enjikaka/snort-shared";
 import { RelayMetrics } from "./cache/index.ts";
 import { TraceReport } from "./query.ts";
 

@@ -1,5 +1,5 @@
 import { EventKind, NostrEvent, ReqFilter, RequestBuilder, SystemInterface } from "../index.ts";
-import { appendDedupe, dedupe, removeUndefined, unixNowMs, unwrap } from "npm:@snort/shared@1.0.16";
+import { appendDedupe, dedupe, removeUndefined, unixNowMs, unwrap } from "@enjikaka/snort-shared";
 import { FlatReqFilter } from "../query-optimizer/index.ts";
 import { RelayListCacheExpire } from "../const.ts";
 import { AuthorsRelaysCache, EventFetcher, PickedRelays, DefaultPickNRelays, parseRelaysFromKind } from "./index.ts";

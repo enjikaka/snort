@@ -1,4 +1,4 @@
-import { equalProp } from "npm:@snort/shared@1.0.16";
+import { equalProp } from "@enjikaka/snort-shared";
 import { FlatReqFilter } from "./query-optimizer/index.ts";
 import { IMeta, NostrEvent, ReqFilter } from "./nostr.ts";
 

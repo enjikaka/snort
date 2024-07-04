@@ -1,4 +1,4 @@
-import { bech32ToHex, hexToBech32, isHex, removeUndefined, unwrap } from "npm:@snort/shared@1.0.16";
+import { bech32ToHex, hexToBech32, isHex, removeUndefined, unwrap } from "@enjikaka/snort-shared";
 import {
   decodeTLV,
   encodeTLV,

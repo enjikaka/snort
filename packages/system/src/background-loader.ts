@@ -1,5 +1,5 @@
 import debug from "npm:debug@4.3.5";
-import { CachedTable, removeUndefined } from "npm:@snort/shared@1.0.16";
+import { CachedTable, removeUndefined } from "@enjikaka/snort-shared";
 import { SystemInterface, TaggedNostrEvent, RequestBuilder } from "./index.ts";
 
 export abstract class BackgroundLoader<T extends { loaded: number; created: number }> {

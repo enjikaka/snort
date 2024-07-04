@@ -1,4 +1,4 @@
-import { CachedTable } from "npm:@snort/shared@1.0.16";
+import { CachedTable } from "@enjikaka/snort-shared";
 import { UsersRelays, CachedMetadata, RelayMetrics, UsersFollows, SnortSystemDb } from "./cache/index.ts";
 import { CacheRelay } from "./cache-relay.ts";
 import { RelaySettings } from "./connection.ts";

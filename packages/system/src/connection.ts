@@ -1,7 +1,7 @@
 import { v4 as uuid } from "npm:uuid@9.0.1";
 import debug from "npm:debug@4.3.5";
 import { default as IsoWebSocket } from "npm:isomorphic-ws@5.0.0";
-import { unixNowMs } from "npm:@snort/shared@1.0.16";
+import { unixNowMs } from "@enjikaka/snort-shared";
 import { EventEmitter } from "npm:eventemitter3@5.0.1";
 
 import { DefaultConnectTimeout } from "./const.ts";

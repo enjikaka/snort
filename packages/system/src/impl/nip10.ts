@@ -1,4 +1,4 @@
-import { dedupe, unwrap } from "npm:@snort/shared@1.0.16";
+import { dedupe, unwrap } from "@enjikaka/snort-shared";
 import { EventBuilder } from "../event-builder.ts";
 import { NostrEvent } from "../nostr.ts";
 import { NostrLink } from "../nostr-link.ts";

@@ -1,0 +1,5 @@
+{
+  "imports": {
+    "@enjikaka/snort-shared": "jsr:@enjikaka/snort-shared@^1.3.7"
+  }
+}
