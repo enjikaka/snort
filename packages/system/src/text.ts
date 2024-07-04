@@ -258,7 +258,7 @@ export function parseIMeta(tags: Array<Array<string>>): Record<string, IMeta> | 
   const imetaTags = tags.filter(a => a[0] === "imeta");
   for (const imetaTag of imetaTags) {
     ret ??= {};
-    let imeta: IMeta = {};
+    const imeta: IMeta = {};
     let url = "";
     for (const t of imetaTag.slice(1)) {
       const [k, v] = t.split(" ");
@@ -289,7 +289,7 @@ export function parseInlineMetaHack(u: URL): IMeta | undefined {
   if (u.hash) {
     const params = new URLSearchParams(u.hash.substring(1));
 
-    let imeta: IMeta = {};
+    const imeta: IMeta = {};
     const dim = params.get("dim");
     if (dim) {
       const [w, h] = dim.split("x");

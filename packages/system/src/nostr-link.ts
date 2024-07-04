@@ -6,7 +6,6 @@ import {
   EventKind,
   type NostrEvent,
   NostrPrefix,
-  type Tag,
   type TaggedNostrEvent,
   TLVEntryType,
 } from "./index.ts";
@@ -63,7 +62,7 @@ export class NostrLink implements ToNostrEventTag {
   encode(type?: NostrPrefix): string {
     try {
       // cant encode 'naddr' to 'note'/'nevent' because 'id' is not hex
-      let newType = this.type === NostrPrefix.Address ? this.type : type ?? this.type;
+      const newType = this.type === NostrPrefix.Address ? this.type : type ?? this.type;
       if (newType === NostrPrefix.Note || newType === NostrPrefix.PrivateKey || newType === NostrPrefix.PublicKey) {
         return hexToBech32(newType, this.id);
       } else {
@@ -123,7 +122,7 @@ export class NostrLink implements ToNostrEventTag {
       }
     } else if (this.type === NostrPrefix.Event || this.type === NostrPrefix.Note) {
       const ifSetCheck = <T>(a: T | undefined, b: T) => {
-        return !Boolean(a) || a === b;
+        return !a || a === b;
       };
       return ifSetCheck(this.id, ev.id) && ifSetCheck(this.author, ev.pubkey) && ifSetCheck(this.kind, ev.kind);
     }
