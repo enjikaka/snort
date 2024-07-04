@@ -1,7 +1,7 @@
 import debug from "npm:debug@4.3.5";
-import { BuiltRawReqFilter, RequestBuilder, SystemInterface, TaggedNostrEvent } from "./index.ts";
-import { Query, TraceReport } from "./query.ts";
-import { FilterCacheLayer } from "./filter-cache-layer.ts";
+import type { BuiltRawReqFilter, RequestBuilder, SystemInterface, TaggedNostrEvent } from "./index.ts";
+import { Query, type TraceReport } from "./query.ts";
+import type { FilterCacheLayer } from "./filter-cache-layer.ts";
 import { trimFilters } from "./request-trim.ts";
 import { eventMatchesFilter } from "./request-matcher.ts";
 import { EventEmitter } from "npm:eventemitter3@5.0.1";

@@ -11,7 +11,7 @@ import {
 } from "./const.ts";
 import { NostrLink, validateNostrLink } from "./nostr-link.ts";
 import { splitByUrl } from "./utils.ts";
-import { IMeta } from "./nostr.ts";
+import type { IMeta } from "./nostr.ts";
 
 export interface ParsedFragment {
   type:

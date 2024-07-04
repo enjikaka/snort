@@ -1,6 +1,6 @@
 import { dedupe, unwrap } from "@enjikaka/snort-shared";
-import { EventBuilder } from "../event-builder.ts";
-import { NostrEvent } from "../nostr.ts";
+import type { EventBuilder } from "../event-builder.ts";
+import type { NostrEvent } from "../nostr.ts";
 import { NostrLink } from "../nostr-link.ts";
 
 export interface Nip10Thread {

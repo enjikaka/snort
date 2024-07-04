@@ -1,4 +1,4 @@
-import { minePow, NostrPowEvent } from "./pow-util.ts";
+import { minePow, type NostrPowEvent } from "./pow-util.ts";
 
 export interface PowWorkerMessage {
   id: string;

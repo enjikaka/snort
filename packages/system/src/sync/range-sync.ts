@@ -1,5 +1,5 @@
 import { unixNow } from "@enjikaka/snort-shared";
-import { ReqFilter, RequestBuilder, SystemInterface, TaggedNostrEvent } from "../index.ts";
+import { type ReqFilter, RequestBuilder, type SystemInterface, type TaggedNostrEvent } from "../index.ts";
 import { EventEmitter } from "npm:eventemitter3@5.0.1";
 
 /**

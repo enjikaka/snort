@@ -4,10 +4,10 @@ import {
   encodeTLV,
   EventExt,
   EventKind,
-  NostrEvent,
+  type NostrEvent,
   NostrPrefix,
-  Tag,
-  TaggedNostrEvent,
+  type Tag,
+  type TaggedNostrEvent,
   TLVEntryType,
 } from "./index.ts";
 import { findTag } from "./utils.ts";

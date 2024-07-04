@@ -1,4 +1,4 @@
-import { NostrEvent, OkResponse, ReqCommand } from "./nostr.ts";
+import type { NostrEvent, OkResponse, ReqCommand } from "./nostr.ts";
 
 /**
  * A cache relay is an always available local (local network / browser worker) relay

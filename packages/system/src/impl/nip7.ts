@@ -1,5 +1,5 @@
-import { WorkQueueItem, processWorkQueue, barrierQueue, unwrap } from "@enjikaka/snort-shared";
-import { EventSigner, NostrEvent } from "../index.ts";
+import { type WorkQueueItem, processWorkQueue, barrierQueue, unwrap } from "@enjikaka/snort-shared";
+import type { EventSigner, NostrEvent } from "../index.ts";
 
 const Nip7Queue: Array<WorkQueueItem> = [];
 processWorkQueue(Nip7Queue);
@@ -16,7 +16,7 @@ declare interface Nip44Window {
 export class Nip7Signer implements EventSigner {
   get supports(): string[] {
     const supports = ["nip04"];
-    if (window.nostr && "nip44" in window.nostr) {
+    if (globalThis.nostr && "nip44" in globalThis.nostr) {
       supports.push("nip44");
     }
     return supports;
@@ -27,14 +27,14 @@ export class Nip7Signer implements EventSigner {
   }
 
   async getPubKey(): Promise<string> {
-    if (!window.nostr) {
+    if (!globalThis.nostr) {
       throw new Error("Cannot use NIP-07 signer, not found!");
     }
-    return await barrierQueue(Nip7Queue, () => unwrap(window.nostr).getPublicKey());
+    return await barrierQueue(Nip7Queue, () => unwrap(globalThis.nostr).getPublicKey());
   }
 
   async nip4Encrypt(content: string, key: string): Promise<string> {
-    if (!window.nostr) {
+    if (!globalThis.nostr) {
       throw new Error("Cannot use NIP-07 signer, not found!");
     }
     return await barrierQueue(Nip7Queue, () =>
@@ -43,7 +43,7 @@ export class Nip7Signer implements EventSigner {
   }
 
   async nip4Decrypt(content: string, otherKey: string): Promise<string> {
-    if (!window.nostr) {
+    if (!globalThis.nostr) {
       throw new Error("Cannot use NIP-07 signer, not found!");
     }
     return await barrierQueue(Nip7Queue, () =>
@@ -52,7 +52,7 @@ export class Nip7Signer implements EventSigner {
   }
 
   async nip44Encrypt(content: string, key: string): Promise<string> {
-    if (!window.nostr) {
+    if (!globalThis.nostr) {
       throw new Error("Cannot use NIP-07 signer, not found!");
     }
     return await barrierQueue(Nip7Queue, async () => {
@@ -62,7 +62,7 @@ export class Nip7Signer implements EventSigner {
   }
 
   async nip44Decrypt(content: string, otherKey: string): Promise<string> {
-    if (!window.nostr) {
+    if (!globalThis.nostr) {
       throw new Error("Cannot use NIP-07 signer, not found!");
     }
     return await barrierQueue(Nip7Queue, async () => {
@@ -72,11 +72,11 @@ export class Nip7Signer implements EventSigner {
   }
 
   async sign(ev: NostrEvent): Promise<NostrEvent> {
-    if (!window.nostr) {
+    if (!globalThis.nostr) {
       throw new Error("Cannot use NIP-07 signer, not found!");
     }
     return await barrierQueue(Nip7Queue, async () => {
-      const signed = await unwrap(window.nostr).signEvent(ev);
+      const signed = await unwrap(globalThis.nostr).signEvent(ev);
       return {
         ...ev,
         sig: signed.sig,

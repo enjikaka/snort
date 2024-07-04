@@ -1,23 +1,23 @@
 import { EventEmitter } from "npm:eventemitter3@5.0.1";
-import { QueryLike, SystemConfig, SystemInterface } from "./system.ts";
-import { RelaySettings, SyncCommand } from "./connection.ts";
-import { TaggedNostrEvent, NostrEvent, OkResponse, ReqCommand } from "./nostr.ts";
-import { BuiltRawReqFilter, RequestBuilder } from "./request-builder.ts";
+import type { QueryLike, SystemConfig, SystemInterface } from "./system.ts";
+import type { RelaySettings, SyncCommand } from "./connection.ts";
+import type { TaggedNostrEvent, NostrEvent, OkResponse, ReqCommand } from "./nostr.ts";
+import type { BuiltRawReqFilter, RequestBuilder } from "./request-builder.ts";
 import NDK, {
-  NDKConstructorParams,
+  type NDKConstructorParams,
   NDKEvent,
-  NDKFilter,
+  type NDKFilter,
   NDKRelay,
   NDKSubscription,
   NDKRelayStatus,
 } from "npm:@nostr-dev-kit/ndk@2.8.2";
 import { SystemBase } from "./system-base.ts";
-import { ConnectionPool, ConnectionType, ConnectionTypeEvents, DefaultConnectionPool } from "./connection-pool.ts";
+import { type ConnectionPool, type ConnectionType, type ConnectionTypeEvents, DefaultConnectionPool } from "./connection-pool.ts";
 import { RelayMetadataLoader } from "./outbox/index.ts";
 import { ProfileLoaderService } from "./profile-cache.ts";
-import { RequestRouter } from "./request-router.ts";
+import type { RequestRouter } from "./request-router.ts";
 import { RelayMetricHandler } from "./relay-metric-handler.ts";
-import { RelayInfo } from "./relay-info.ts";
+import type { RelayInfo } from "./relay-info.ts";
 import { QueryManager } from "./query-manager.ts";
 import debug from "npm:debug@4.3.5";
 

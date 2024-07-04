@@ -1,6 +1,6 @@
 import { bytesToHex, hexToBytes } from "npm:@noble/hashes@1.4.0/utils";
-import { Connection } from "../connection.ts";
-import { ReqFilter, TaggedNostrEvent } from "../nostr.ts";
+import type { Connection } from "../connection.ts";
+import type { ReqFilter, TaggedNostrEvent } from "../nostr.ts";
 import { Negentropy } from "./negentropy.ts";
 import { NegentropyStorageVector } from "./vector-storage.ts";
 import debug from "npm:debug@4.3.5";

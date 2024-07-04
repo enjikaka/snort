@@ -1,25 +1,25 @@
 import debug from "npm:debug@4.3.5";
 
 import { unixNowMs } from "@enjikaka/snort-shared";
-import { NostrEvent, TaggedNostrEvent, OkResponse } from "./nostr.ts";
-import { RelaySettings } from "./connection.ts";
-import { BuiltRawReqFilter, RequestBuilder } from "./request-builder.ts";
+import type { NostrEvent, TaggedNostrEvent, OkResponse } from "./nostr.ts";
+import type { RelaySettings } from "./connection.ts";
+import type { BuiltRawReqFilter, RequestBuilder } from "./request-builder.ts";
 import { RelayMetricHandler } from "./relay-metric-handler.ts";
 import { ProfileLoaderService } from "./profile-cache.ts";
 import {
-  SystemInterface,
-  SystemSnapshot,
-  QueryLike,
+  type SystemInterface,
+  type SystemSnapshot,
+  type QueryLike,
   OutboxModel,
   socialGraphInstance,
   EventKind,
   ID,
-  SystemConfig,
+  type SystemConfig,
 } from "./index.ts";
 import { RelayMetadataLoader } from "./outbox/index.ts";
-import { ConnectionPool, ConnectionType, DefaultConnectionPool } from "./connection-pool.ts";
+import { type ConnectionPool, type ConnectionType, DefaultConnectionPool } from "./connection-pool.ts";
 import { QueryManager } from "./query-manager.ts";
-import { RequestRouter } from "./request-router.ts";
+import type { RequestRouter } from "./request-router.ts";
 import { SystemBase } from "./system-base.ts";
 
 /**

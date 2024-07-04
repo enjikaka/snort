@@ -1,10 +1,10 @@
 import debug from "npm:debug@4.3.5";
 import { appendDedupe, dedupe, removeUndefined, sanitizeRelayUrl, unixNowMs, unwrap } from "@enjikaka/snort-shared";
 
-import EventKind from "./event-kind.ts";
-import { FlatReqFilter, NostrLink, NostrPrefix, SystemInterface, ToNostrEventTag } from "./index.ts";
-import { ReqFilter, u256, HexKey, TaggedNostrEvent } from "./nostr.ts";
-import { RequestRouter } from "./request-router.ts";
+import type EventKind from "./event-kind.ts";
+import { type FlatReqFilter, type NostrLink, NostrPrefix, type SystemInterface, type ToNostrEventTag } from "./index.ts";
+import type { ReqFilter, u256, HexKey, TaggedNostrEvent } from "./nostr.ts";
+import type { RequestRouter } from "./request-router.ts";
 
 /**
  * A built REQ filter ready for sending to System

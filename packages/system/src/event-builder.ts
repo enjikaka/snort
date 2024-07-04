@@ -1,8 +1,8 @@
-import { EventKind, HexKey, NostrPrefix, NostrEvent, EventSigner, PowMiner, NotSignedNostrEvent } from "./index.ts";
+import { type EventKind, type HexKey, NostrPrefix, type NostrEvent, type EventSigner, type PowMiner, type NotSignedNostrEvent } from "./index.ts";
 import { HashtagRegex, MentionNostrEntityRegex } from "./const.ts";
 import { getPublicKey, jitter, unixNow } from "@enjikaka/snort-shared";
 import { EventExt } from "./event-ext.ts";
-import { NostrLink, tryParseNostrLink } from "./nostr-link.ts";
+import { type NostrLink, tryParseNostrLink } from "./nostr-link.ts";
 
 export class EventBuilder {
   #kind?: EventKind;

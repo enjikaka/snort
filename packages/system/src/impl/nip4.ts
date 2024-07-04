@@ -1,4 +1,4 @@
-import { MessageEncryptor, MessageEncryptorPayload, MessageEncryptorVersion } from "../index.ts";
+import { type MessageEncryptor, type MessageEncryptorPayload, MessageEncryptorVersion } from "../index.ts";
 import { secp256k1 } from "npm:@noble/curves@1.4.0/secp256k1";
 
 export class Nip4WebCryptoEncryptor implements MessageEncryptor {

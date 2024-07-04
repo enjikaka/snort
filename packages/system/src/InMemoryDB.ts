@@ -1,4 +1,4 @@
-import { ID, ReqFilter as Filter, STR, TaggedNostrEvent, UID } from "./index.ts";
+import { ID, type ReqFilter as Filter, STR, type TaggedNostrEvent, type UID } from "./index.ts";
 import loki from "npm:lokijs";
 import debug from "npm:debug@4.3.5";
 

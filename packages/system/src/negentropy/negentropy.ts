@@ -1,6 +1,6 @@
 import { bytesToHex } from "npm:@noble/hashes@1.4.0/utils";
 import { WrappedBuffer } from "./wrapped-buffer.ts";
-import { NegentropyStorageVector, VectorStorageItem } from "./vector-storage.ts";
+import type { NegentropyStorageVector, VectorStorageItem } from "./vector-storage.ts";
 import {
   PROTOCOL_VERSION,
   getByte,

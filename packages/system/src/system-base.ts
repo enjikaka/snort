@@ -1,11 +1,11 @@
-import { CachedTable } from "@enjikaka/snort-shared";
-import { UsersRelays, CachedMetadata, RelayMetrics, UsersFollows } from "./cache/index.ts";
-import { CacheRelay } from "./cache-relay.ts";
+import type { CachedTable } from "@enjikaka/snort-shared";
+import type { UsersRelays, CachedMetadata, RelayMetrics, UsersFollows } from "./cache/index.ts";
+import type { CacheRelay } from "./cache-relay.ts";
 import { EventsCache } from "./cache/events.ts";
 import { UserFollowsCache } from "./cache/user-follows-lists.ts";
-import { UserRelaysCache, UserProfileCache, RelayMetricCache, NostrEvent } from "./index.ts";
-import { DefaultOptimizer, Optimizer } from "./query-optimizer/index.ts";
-import { NostrSystemEvents, SystemConfig } from "./system.ts";
+import { UserRelaysCache, UserProfileCache, RelayMetricCache, type NostrEvent } from "./index.ts";
+import { DefaultOptimizer, type Optimizer } from "./query-optimizer/index.ts";
+import type { NostrSystemEvents, SystemConfig } from "./system.ts";
 import { EventEmitter } from "npm:eventemitter3@5.0.1";
 
 export abstract class SystemBase extends EventEmitter<NostrSystemEvents> {

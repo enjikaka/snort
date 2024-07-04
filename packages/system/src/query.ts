@@ -2,12 +2,12 @@ import debug from "debug";
 import { EventEmitter } from "npm:eventemitter3@5.0.1";
 import { unixNowMs, unwrap } from "@enjikaka/snort-shared";
 
-import { ReqFilter, Nips, TaggedNostrEvent, SystemInterface, ParsedFragment } from "./index.ts";
+import { type ReqFilter, Nips, type TaggedNostrEvent, type SystemInterface, type ParsedFragment } from "./index.ts";
 import { NoteCollection } from "./note-collection.ts";
-import { BuiltRawReqFilter, RequestBuilder } from "./request-builder.ts";
+import type { BuiltRawReqFilter, RequestBuilder } from "./request-builder.ts";
 import { eventMatchesFilter } from "./request-matcher.ts";
 import { LRUCache } from "npm:lru-cache@10.2.2";
-import { ConnectionType } from "./connection-pool.ts";
+import type { ConnectionType } from "./connection-pool.ts";
 
 interface QueryTraceEvents {
   close: (id: string) => void;

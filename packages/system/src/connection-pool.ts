@@ -2,10 +2,10 @@ import { removeUndefined, sanitizeRelayUrl, unwrap } from "@enjikaka/snort-share
 import debug from "debug";
 import { EventEmitter } from "npm:eventemitter3@5.0.1";
 
-import { Connection, RelaySettings, SyncCommand } from "./connection.ts";
-import { NostrEvent, OkResponse, ReqCommand, TaggedNostrEvent } from "./nostr.ts";
-import { RelayInfo, SystemInterface } from "./index.ts";
-import { ConnectionSyncModule, DefaultSyncModule } from "./sync/connection.ts";
+import { Connection, type RelaySettings, type SyncCommand } from "./connection.ts";
+import type { NostrEvent, OkResponse, ReqCommand, TaggedNostrEvent } from "./nostr.ts";
+import type { RelayInfo, SystemInterface } from "./index.ts";
+import { type ConnectionSyncModule, DefaultSyncModule } from "./sync/connection.ts";
 
 /**
  * Events which the ConnectionType must emit

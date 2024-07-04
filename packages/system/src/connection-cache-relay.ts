@@ -1,6 +1,6 @@
-import { NostrEvent, OkResponse, ReqCommand, ReqFilter, TaggedNostrEvent } from "./nostr.ts";
-import { CacheRelay } from "./cache-relay.ts";
-import { Connection } from "./connection.ts";
+import type { NostrEvent, OkResponse, ReqCommand, ReqFilter, TaggedNostrEvent } from "./nostr.ts";
+import type { CacheRelay } from "./cache-relay.ts";
+import type { Connection } from "./connection.ts";
 import { NoteCollection } from "./note-collection.ts";
 
 /**

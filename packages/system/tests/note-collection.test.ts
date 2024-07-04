@@ -1,4 +1,4 @@
-import { TaggedNostrEvent } from "../src/nostr";
+import type { TaggedNostrEvent } from "../src/nostr";
 import { describe, expect } from "@jest/globals";
 import { FlatNoteStore, ReplaceableNoteStore } from "../src/note-collection";
 

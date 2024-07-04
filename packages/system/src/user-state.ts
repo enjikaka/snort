@@ -1,13 +1,13 @@
 import { NostrPrefix } from "./links.ts";
-import { NostrLink, ToNostrEventTag } from "./nostr-link.ts";
+import { NostrLink, type ToNostrEventTag } from "./nostr-link.ts";
 import { DiffSyncTags, JsonEventSync } from "./sync/index.ts";
 import EventKind from "./event-kind.ts";
 import {
-  EventSigner,
-  FullRelaySettings,
-  RelaySettings,
-  SystemInterface,
-  UserMetadata,
+  type EventSigner,
+  type FullRelaySettings,
+  type RelaySettings,
+  type SystemInterface,
+  type UserMetadata,
   parseRelayTags,
   parseRelaysFromKind,
   settingsToRelayTag,

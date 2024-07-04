@@ -1,4 +1,4 @@
-import { NostrEvent, ReqFilter } from "./nostr.ts";
+import type { NostrEvent, ReqFilter } from "./nostr.ts";
 
 export function eventMatchesFilter(ev: NostrEvent, filter: ReqFilter) {
   if (filter.since && ev.created_at < filter.since) {

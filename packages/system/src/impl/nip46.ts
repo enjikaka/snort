@@ -3,10 +3,10 @@ import { secp256k1 } from "npm:@noble/curves@1.4.0/secp256k1";
 import debug from "npm:debug@4.3.5";
 
 import { Connection } from "../connection.ts";
-import { EventSigner, PrivateKeySigner } from "../signer.ts";
-import { NostrEvent } from "../nostr.ts";
+import { type EventSigner, PrivateKeySigner } from "../signer.ts";
+import type { NostrEvent } from "../nostr.ts";
 import { EventBuilder } from "../event-builder.ts";
-import EventKind from "../event-kind.ts";
+import type EventKind from "../event-kind.ts";
 import { EventEmitter } from "npm:eventemitter3@5.0.1";
 
 const NIP46_KIND = 24_133;

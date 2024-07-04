@@ -1,12 +1,12 @@
 import {
   EventExt,
-  EventSigner,
+  type EventSigner,
   EventType,
-  NostrEvent,
-  NostrLink,
-  NotSignedNostrEvent,
+  type NostrEvent,
+  type NostrLink,
+  type NotSignedNostrEvent,
   RequestBuilder,
-  SystemInterface,
+  type SystemInterface,
 } from "../index.ts";
 import { unixNow } from "@enjikaka/snort-shared";
 import debug from "npm:debug@4.3.5";

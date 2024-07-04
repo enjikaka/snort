@@ -1,5 +1,5 @@
-import { NostrEvent } from "./nostr.ts";
-import { PowWorkerMessage } from "./pow-worker.ts";
+import type { NostrEvent } from "./nostr.ts";
+import type { PowWorkerMessage } from "./pow-worker.ts";
 
 export interface PowMiner {
   minePow(ev: NostrEvent, target: number): Promise<NostrEvent>;

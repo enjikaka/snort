@@ -1,8 +1,8 @@
-import { EventKind, NostrEvent, ReqFilter, RequestBuilder, SystemInterface } from "../index.ts";
+import { EventKind, type NostrEvent, type ReqFilter, RequestBuilder, type SystemInterface } from "../index.ts";
 import { appendDedupe, dedupe, removeUndefined, unixNowMs, unwrap } from "@enjikaka/snort-shared";
-import { FlatReqFilter } from "../query-optimizer/index.ts";
+import type { FlatReqFilter } from "../query-optimizer/index.ts";
 import { RelayListCacheExpire } from "../const.ts";
-import { AuthorsRelaysCache, EventFetcher, PickedRelays, DefaultPickNRelays, parseRelaysFromKind } from "./index.ts";
+import { type AuthorsRelaysCache, type EventFetcher, type PickedRelays, DefaultPickNRelays, parseRelaysFromKind } from "./index.ts";
 import debug from "npm:debug@4.3.5";
 import { BaseRequestRouter } from "../request-router.ts";
 

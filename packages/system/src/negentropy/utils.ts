@@ -1,4 +1,4 @@
-import { VectorStorageItem } from "./vector-storage.ts";
+import type { VectorStorageItem } from "./vector-storage.ts";
 import { WrappedBuffer } from "./wrapped-buffer.ts";
 
 export const PROTOCOL_VERSION = 0x61; // Version 1

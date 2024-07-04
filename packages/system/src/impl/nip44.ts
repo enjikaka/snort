@@ -1,4 +1,4 @@
-import { MessageEncryptor, MessageEncryptorPayload, MessageEncryptorVersion } from "../index.ts";
+import { type MessageEncryptor, type MessageEncryptorPayload, MessageEncryptorVersion } from "../index.ts";
 
 import { randomBytes } from "npm:@noble/hashes@1.4.0/utils";
 import { streamXOR as xchacha20 } from "npm:@stablelib/xchacha20@1.0.1";

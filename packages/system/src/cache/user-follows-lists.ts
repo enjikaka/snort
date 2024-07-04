@@ -1,5 +1,5 @@
-import { UsersFollows } from "./index.ts";
-import { DexieTableLike, FeedCache } from "@enjikaka/snort-shared";
+import type { UsersFollows } from "./index.ts";
+import { type DexieTableLike, FeedCache } from "@enjikaka/snort-shared";
 
 export class UserFollowsCache extends FeedCache<UsersFollows> {
   constructor(table?: DexieTableLike<UsersFollows>) {

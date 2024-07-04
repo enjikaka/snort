@@ -1,4 +1,4 @@
-import { NostrSystem, RequestBuilder, FlatNoteStore, StoreSnapshot, NoteCollection } from "../src";
+import { NostrSystem, RequestBuilder, type FlatNoteStore, type StoreSnapshot, type NoteCollection } from "../src";
 
 // Singleton instance to store all connections and access query fetching system
 const System = new NostrSystem({});

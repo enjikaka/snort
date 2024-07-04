@@ -1,15 +1,15 @@
 import debug from "npm:debug@4.3.5";
-import { default as IsoWebSocket } from "npm:isomorphic-ws@5.0.0";
+import type { default as IsoWebSocket } from "npm:isomorphic-ws@5.0.0";
 import { unixNowMs } from "@enjikaka/snort-shared";
 import { EventEmitter } from "npm:eventemitter3@5.0.1";
 
 import { DefaultConnectTimeout } from "./const.ts";
-import { NostrEvent, OkResponse, ReqCommand, ReqFilter, TaggedNostrEvent, u256 } from "./nostr.ts";
-import { RelayInfo } from "./relay-info.ts";
+import type { NostrEvent, OkResponse, ReqCommand, ReqFilter, TaggedNostrEvent, u256 } from "./nostr.ts";
+import type { RelayInfo } from "./relay-info.ts";
 import EventKind from "./event-kind.ts";
 import { EventExt } from "./event-ext.ts";
-import { ConnectionType, ConnectionTypeEvents } from "./connection-pool.ts";
-import { ConnectionSyncModule } from "./sync/connection.ts";
+import type { ConnectionType, ConnectionTypeEvents } from "./connection-pool.ts";
+import type { ConnectionSyncModule } from "./sync/connection.ts";
 
 /**
  * Relay settings

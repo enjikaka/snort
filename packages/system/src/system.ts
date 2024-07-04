@@ -1,16 +1,16 @@
-import { CachedTable } from "@enjikaka/snort-shared";
-import { UsersRelays, CachedMetadata, RelayMetrics, UsersFollows, SnortSystemDb } from "./cache/index.ts";
-import { CacheRelay } from "./cache-relay.ts";
-import { RelaySettings } from "./connection.ts";
-import { ConnectionPool } from "./connection-pool.ts";
-import { TaggedNostrEvent, OkResponse, ReqFilter, NostrEvent } from "./nostr.ts";
-import { AuthorsRelaysCache, RelayMetadataLoader } from "./outbox/index.ts";
-import { ProfileLoaderService } from "./profile-cache.ts";
-import { Optimizer } from "./query-optimizer/index.ts";
-import { BuiltRawReqFilter, RequestBuilder } from "./request-builder.ts";
-import { RequestRouter } from "./request-router.ts";
-import { QueryEvents } from "./query.ts";
-import { EventEmitter } from "npm:eventemitter3@5.0.1";
+import type { CachedTable } from "@enjikaka/snort-shared";
+import type { UsersRelays, CachedMetadata, RelayMetrics, UsersFollows, SnortSystemDb } from "./cache/index.ts";
+import type { CacheRelay } from "./cache-relay.ts";
+import type { RelaySettings } from "./connection.ts";
+import type { ConnectionPool } from "./connection-pool.ts";
+import type { TaggedNostrEvent, OkResponse, ReqFilter, NostrEvent } from "./nostr.ts";
+import type { AuthorsRelaysCache, RelayMetadataLoader } from "./outbox/index.ts";
+import type { ProfileLoaderService } from "./profile-cache.ts";
+import type { Optimizer } from "./query-optimizer/index.ts";
+import type { BuiltRawReqFilter, RequestBuilder } from "./request-builder.ts";
+import type { RequestRouter } from "./request-router.ts";
+import type { QueryEvents } from "./query.ts";
+import type { EventEmitter } from "npm:eventemitter3@5.0.1";
 
 export type QueryLike = {
   get progress(): number;

@@ -1,5 +1,5 @@
-import { FullRelaySettings, HexKey, NostrEvent, UserMetadata } from "../index.ts";
-import { hexToBech32, unixNowMs, DexieTableLike } from "@enjikaka/snort-shared";
+import type { FullRelaySettings, HexKey, NostrEvent, UserMetadata } from "../index.ts";
+import { hexToBech32, unixNowMs, type DexieTableLike } from "@enjikaka/snort-shared";
 
 export interface CachedMetadata extends UserMetadata {
   /**

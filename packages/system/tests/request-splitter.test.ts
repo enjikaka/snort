@@ -1,4 +1,4 @@
-import { ReqFilter } from "../src";
+import type { ReqFilter } from "../src";
 import { describe, expect } from "@jest/globals";
 import { diffFilters } from "../src/query-optimizer/request-splitter";
 import { expandFilter } from "../src/query-optimizer/request-expander";

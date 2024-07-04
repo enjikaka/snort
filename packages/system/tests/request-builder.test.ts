@@ -1,9 +1,9 @@
-import { RelayCache } from "../src/outbox-model";
+import type { RelayCache } from "../src/outbox-model";
 import { RequestBuilder, RequestStrategy } from "../src/request-builder";
 import { describe, expect } from "@jest/globals";
-import { bytesToHex } from "@noble/curves/abstract/utils";
-import { FeedCache, unixNow, unixNowMs } from "@enjikaka/snort-shared";
-import { NostrSystem, UsersRelays } from "../src";
+import type { bytesToHex } from "@noble/curves/abstract/utils";
+import { type FeedCache, unixNow, type unixNowMs } from "@enjikaka/snort-shared";
+import { NostrSystem, type UsersRelays } from "../src";
 
 const DummyCache = {
   getFromCache: (pk?: string) => {

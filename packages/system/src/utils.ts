@@ -1,6 +1,6 @@
 import { equalProp } from "@enjikaka/snort-shared";
-import { FlatReqFilter } from "./query-optimizer/index.ts";
-import { IMeta, NostrEvent, ReqFilter } from "./nostr.ts";
+import type { FlatReqFilter } from "./query-optimizer/index.ts";
+import type { IMeta, NostrEvent, ReqFilter } from "./nostr.ts";
 
 export function findTag(e: NostrEvent, tag: string) {
   const maybeTag = e.tags.find(evTag => {

@@ -1,6 +1,6 @@
-import { CachedTable, unixNowMs } from "@enjikaka/snort-shared";
-import { RelayMetrics } from "./cache/index.ts";
-import { TraceReport } from "./query.ts";
+import { type CachedTable, unixNowMs } from "@enjikaka/snort-shared";
+import type { RelayMetrics } from "./cache/index.ts";
+import type { TraceReport } from "./query.ts";
 
 export class RelayMetricHandler {
   readonly #cache: CachedTable<RelayMetrics>;

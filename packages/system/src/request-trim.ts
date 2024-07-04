@@ -1,4 +1,4 @@
-import { ReqFilter } from "./nostr.ts";
+import type { ReqFilter } from "./nostr.ts";
 
 /**
  * Remove empty filters, filters which would result in no results

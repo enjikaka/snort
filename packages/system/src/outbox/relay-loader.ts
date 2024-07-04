@@ -1,4 +1,4 @@
-import { EventKind, RequestBuilder, TaggedNostrEvent, UsersRelays } from "../index.ts";
+import { EventKind, RequestBuilder, type TaggedNostrEvent, type UsersRelays } from "../index.ts";
 import { unixNowMs } from "@enjikaka/snort-shared";
 import { RelayListCacheExpire } from "../const.ts";
 import { BackgroundLoader } from "../background-loader.ts";

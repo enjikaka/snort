@@ -2,8 +2,8 @@ import * as secp from "npm:@noble/curves@1.4.0/secp256k1";
 import * as utils from "npm:@noble/curves@1.4.0/abstract/utils";
 import { getPublicKey, sha256, unixNow } from "@enjikaka/snort-shared";
 
-import { EventKind, HexKey, NostrEvent, NotSignedNostrEvent } from "./index.ts";
-import { NostrPowEvent, minePow } from "./pow-util.ts";
+import type { EventKind, HexKey, NostrEvent, NotSignedNostrEvent } from "./index.ts";
+import { type NostrPowEvent, minePow } from "./pow-util.ts";
 import { findTag } from "./utils.ts";
 
 export interface Tag {

@@ -1,5 +1,5 @@
-import { RelayMetrics } from "./index.ts";
-import { DexieTableLike, FeedCache } from "@enjikaka/snort-shared";
+import type { RelayMetrics } from "./index.ts";
+import { type DexieTableLike, FeedCache } from "@enjikaka/snort-shared";
 
 export class RelayMetricCache extends FeedCache<RelayMetrics> {
   constructor(table?: DexieTableLike<RelayMetrics>) {

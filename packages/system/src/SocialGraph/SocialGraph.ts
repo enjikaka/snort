@@ -1,5 +1,5 @@
-import { ID, STR, UID } from "./UniqueIds.ts";
-import { HexKey, NostrEvent } from "../index.ts";
+import { ID, STR, type UID } from "./UniqueIds.ts";
+import type { HexKey, NostrEvent } from "../index.ts";
 
 export default class SocialGraph {
   root: UID;

@@ -4,7 +4,7 @@ import { EventExt } from "./event-ext.ts";
 import { Nip4WebCryptoEncryptor } from "./impl/nip4.ts";
 import { XChaCha20Encryptor } from "./impl/nip44.ts";
 import { MessageEncryptorVersion, decodeEncryptionPayload, encodeEncryptionPayload } from "./index.ts";
-import { NostrEvent, NotSignedNostrEvent } from "./nostr.ts";
+import type { NostrEvent, NotSignedNostrEvent } from "./nostr.ts";
 import { base64 } from "npm:@scure/base@1.1.7";
 
 export type SignerSupports = "nip04" | "nip44" | string;

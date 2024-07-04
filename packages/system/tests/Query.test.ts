@@ -5,7 +5,7 @@ import { getRandomValues } from "crypto";
 import { FlatNoteStore } from "../src/note-collection";
 import { RequestStrategy } from "../src/request-builder";
 
-window.crypto = {} as any;
+globalThis.crypto = {} as any;
 window.crypto.getRandomValues = getRandomValues as any;
 
 describe("query", () => {
