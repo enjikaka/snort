@@ -1,7 +1,7 @@
-import debug from "debug";
-import { removeUndefined, unixNowMs } from "./utils";
-import { DexieTableLike } from "./dexie-like";
-import { EventEmitter } from "eventemitter3";
+import debug from "npm:debug@4.3.5";
+import { removeUndefined, unixNowMs } from "./utils.ts";
+import { DexieTableLike } from "./dexie-like.ts";
+import { EventEmitter } from "npm:eventemitter3@5.0.1";
 
 type HookFn = () => void;
 
@@ -84,7 +84,7 @@ export abstract class FeedCache<TCached> extends EventEmitter<CacheEvents<TCache
     }
   }
 
-  hook(fn: HookFn, key: string | undefined) {
+  hook(fn: HookFn, key: string | undefined): () => this {
     const handle = (keys: Array<string>) => {
       if (!key || keys.includes(key)) {
         fn();
@@ -94,11 +94,11 @@ export abstract class FeedCache<TCached> extends EventEmitter<CacheEvents<TCache
     return () => this.off("change", handle);
   }
 
-  keysOnTable() {
+  keysOnTable(): string[] {
     return [...this.onTable];
   }
 
-  getFromCache(key?: string) {
+  getFromCache(key?: string): TCached | undefined {
     if (key) {
       const ret = this.cache.get(key);
       if (ret) {
@@ -110,7 +110,7 @@ export abstract class FeedCache<TCached> extends EventEmitter<CacheEvents<TCache
     }
   }
 
-  async get(key?: string) {
+  async get(key?: string): Promise<TCached | undefined> {
     if (key && !this.cache.has(key) && this.table) {
       const cached = await this.table.get(key);
       if (cached) {
@@ -122,7 +122,7 @@ export abstract class FeedCache<TCached> extends EventEmitter<CacheEvents<TCache
     return key ? this.cache.get(key) : undefined;
   }
 
-  async bulkGet(keys: Array<string>) {
+  async bulkGet(keys: Array<string>): Promise<TCached[]> {
     const missing = keys.filter(a => !this.cache.has(a));
     if (missing.length > 0 && this.table) {
       const cached = await this.table.bulkGet(missing);
@@ -165,7 +165,7 @@ export abstract class FeedCache<TCached> extends EventEmitter<CacheEvents<TCache
     );
   }
 
-  async update<TCachedWithCreated extends TCached & { created: number; loaded: number }>(m: TCachedWithCreated) {
+  async update<TCachedWithCreated extends TCached & { created: number; loaded: number }>(m: TCachedWithCreated): Promise<"new" | "refresh" | "updated" | "no_change"> {
     const k = this.key(m);
     const existing = this.getFromCache(k) as TCachedWithCreated;
     const updateType = (() => {
@@ -215,13 +215,13 @@ export abstract class FeedCache<TCached> extends EventEmitter<CacheEvents<TCache
     return needsBuffer;
   }
 
-  async clear() {
+  async clear(): Promise<void> {
     await this.table?.clear();
     this.cache.clear();
     this.onTable.clear();
   }
 
-  snapshot() {
+  snapshot(): TCached[] {
     return this.#snapshot;
   }
 

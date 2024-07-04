@@ -1,4 +1,4 @@
-import { EventEmitter } from "eventemitter3";
+import { EventEmitter } from "npm:eventemitter3@5.0.1";
 
 interface ExternalStoreEvents {
   change: () => void;
@@ -11,12 +11,12 @@ export abstract class ExternalStore<TSnapshot> extends EventEmitter<ExternalStor
   #snapshot: TSnapshot = {} as TSnapshot;
   #changed = true;
 
-  hook(cb: () => void) {
+  hook(cb: () => void): () => this {
     this.on("change", cb);
     return () => this.off("change", cb);
   }
 
-  snapshot(p?: any) {
+  snapshot(p?: any): TSnapshot {
     if (this.#changed) {
       this.#snapshot = this.takeSnapshot(p);
       this.#changed = false;

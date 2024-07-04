@@ -3,7 +3,9 @@
  */
 export abstract class DexieLike {
   constructor(name: string) {}
-  version(n: number) {
+  version(n: number): {
+    stores(schema: object): void;
+  } {
     return {
       stores(schema: object) {},
     };

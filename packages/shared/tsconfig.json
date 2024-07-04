@@ -11,7 +11,8 @@
     "declarationMap": true,
     "inlineSourceMap": true,
     "outDir": "dist",
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "lib": ["es2020"]
   },
   "include": ["./src/**/*.ts"],
   "exclude": ["src/**/*.test.ts"]

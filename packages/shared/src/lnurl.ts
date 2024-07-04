@@ -1,5 +1,5 @@
-import { EmailRegex } from "./const";
-import { bech32ToText, throwIfOffline, unwrap } from "./utils";
+import { EmailRegex } from "./const.ts";
+import { bech32ToText, throwIfOffline, unwrap } from "./utils.ts";
 
 const PayServiceTag = "payRequest";
 
@@ -50,14 +50,14 @@ export class LNURL {
   /**
    * URL of this payService
    */
-  get url() {
+  get url(): URL {
     return this.#url;
   }
 
   /**
    * Return the optimal formatted LNURL
    */
-  get lnurl() {
+  get lnurl(): string {
     if (this.isLNAddress) {
       return this.getLNAddress();
     }
@@ -67,7 +67,7 @@ export class LNURL {
   /**
    * Human readable name for this service
    */
-  get name() {
+  get name(): string {
     // LN Address formatted URL
     if (this.isLNAddress) {
       return this.getLNAddress();
@@ -79,14 +79,14 @@ export class LNURL {
   /**
    * Is this LNURL a LUD-16 Lightning Address
    */
-  get isLNAddress() {
+  get isLNAddress(): boolean {
     return this.#url.pathname.startsWith("/.well-known/lnurlp/");
   }
 
   /**
    * Get the LN Address for this LNURL
    */
-  getLNAddress() {
+  getLNAddress(): string {
     const pathParts = this.#url.pathname.split("/");
     const username = pathParts[pathParts.length - 1];
     return `${username}@${this.#url.hostname}`;
@@ -152,35 +152,35 @@ export class LNURL {
   /**
    * Are zaps (NIP-57) supported
    */
-  get canZap() {
+  get canZap(): boolean {
     return this.#service?.nostrPubkey ? true : false;
   }
 
   /**
    * Return pubkey of zap service
    */
-  get zapperPubkey() {
+  get zapperPubkey(): string | undefined {
     return this.#service?.nostrPubkey;
   }
 
   /**
    * Get the max allowed comment length
    */
-  get maxCommentLength() {
+  get maxCommentLength(): number {
     return this.#service?.commentAllowed ?? 0;
   }
 
   /**
    * Min sendable in milli-sats
    */
-  get min() {
+  get min(): number {
     return this.#service?.minSendable ?? 1_000; // 1 sat
   }
 
   /**
    * Max sendable in milli-sats
    */
-  get max() {
+  get max(): number {
     return this.#service?.maxSendable ?? 100e9; // 1 BTC in milli-sats
   }
 

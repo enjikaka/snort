@@ -1,7 +1,7 @@
-import * as utils from "@noble/curves/abstract/utils";
-import * as secp from "@noble/curves/secp256k1";
-import { sha256 as sha2 } from "@noble/hashes/sha256";
-import { bech32 } from "@scure/base";
+import * as utils from "npm:@noble/curves@1.4.0/abstract/utils";
+import * as secp from "npm:@noble/curves@1.4.0/secp256k1";
+import { sha256 as sha2 } from "npm:@noble/hashes@1.4.0/sha256";
+import { bech32 } from "npm:@scure/base@1.1.7";
 
 export function unwrap<T>(v: T | undefined | null): T {
   if (v === undefined || v === null) {
@@ -13,7 +13,7 @@ export function unwrap<T>(v: T | undefined | null): T {
 /**
  * Convert hex to bech32
  */
-export function hexToBech32(hrp: string, hex?: string) {
+export function hexToBech32(hrp: string, hex?: string): "" | `${Lowercase<string>}1${string}` {
   if (typeof hex !== "string" || hex.length === 0 || hex.length % 2 !== 0) {
     return "";
   }
@@ -27,7 +27,7 @@ export function hexToBech32(hrp: string, hex?: string) {
   }
 }
 
-export function sanitizeRelayUrl(url: string) {
+export function sanitizeRelayUrl(url: string): string | undefined {
   try {
     return new URL(url).toString();
   } catch {
@@ -35,19 +35,19 @@ export function sanitizeRelayUrl(url: string) {
   }
 }
 
-export function unixNow() {
+export function unixNow(): number {
   return Math.floor(unixNowMs() / 1000);
 }
 
-export function unixNowMs() {
+export function unixNowMs(): number {
   return new Date().getTime();
 }
 
-export function jitter(n: number) {
+export function jitter(n: number): number {
   return n * 2 * Math.random() - n;
 }
 
-export function deepClone<T>(obj: T) {
+export function deepClone<T>(obj: T): T {
   if ("structuredClone" in window) {
     return structuredClone(obj);
   } else {
@@ -65,7 +65,7 @@ export function deepEqual(x: any, y: any): boolean {
     : x === y;
 }
 
-export function countMembers(a: any) {
+export function countMembers(a: any): number {
   let ret = 0;
   for (const [k, v] of Object.entries(a)) {
     if (Array.isArray(v)) {
@@ -78,7 +78,7 @@ export function countMembers(a: any) {
 export function equalProp(
   a: string | number | Array<string | number> | undefined,
   b: string | number | Array<string | number> | undefined,
-) {
+): boolean {
   if ((a !== undefined && b === undefined) || (a === undefined && b !== undefined)) {
     return false;
   }
@@ -127,11 +127,11 @@ export function distance(a: any, b: any): number {
   return distance;
 }
 
-export function dedupe<T>(v: Array<T>) {
+export function dedupe<T>(v: Array<T>): T[] {
   return [...new Set(v)];
 }
 
-export function appendDedupe<T>(a?: Array<T>, b?: Array<T>) {
+export function appendDedupe<T>(a?: Array<T>, b?: Array<T>): T[] {
   return dedupe([...(a ?? []), ...(b ?? [])]);
 }
 
@@ -139,11 +139,11 @@ export const sha256 = (str: string | Uint8Array): string => {
   return utils.bytesToHex(sha2(str));
 };
 
-export function getPublicKey(privKey: string) {
+export function getPublicKey(privKey: string): string {
   return utils.bytesToHex(secp.schnorr.getPublicKey(privKey));
 }
 
-export function bech32ToHex(str: string) {
+export function bech32ToHex(str: string): string {
   const nKey = bech32.decode(str, 1_000);
   const buff = bech32.fromWords(nKey.words);
   return utils.bytesToHex(Uint8Array.from(buff));
@@ -154,7 +154,7 @@ export function bech32ToHex(str: string) {
  * @param str bech32 encoded string
  * @returns
  */
-export function bech32ToText(str: string) {
+export function bech32ToText(str: string): string {
   const decoded = bech32.decode(str, 1000);
   const buf = bech32.fromWords(decoded.words);
   return new TextDecoder().decode(Uint8Array.from(buf));
@@ -200,7 +200,7 @@ export async function fetchNostrAddress(name: string, domain: string, timeout = 
   return undefined;
 }
 
-export function removeUndefined<T>(v: Array<T | undefined>) {
+export function removeUndefined<T>(v: Array<T | undefined>): T[] {
   return v.filter(a => a !== undefined).map(a => unwrap(a));
 }
 
@@ -215,7 +215,7 @@ export const enum Reaction {
 /**
  * Return normalized reaction content
  */
-export function normalizeReaction(content: string) {
+export function normalizeReaction(content: string): Reaction {
   switch (content) {
     case "-":
       return Reaction.Negative;
@@ -234,11 +234,12 @@ export function throwIfOffline() {
   }
 }
 
-export function isOffline() {
+export function isOffline(): boolean {
+  // @ts-ignore: navigator.onLine
   return !("navigator" in globalThis && globalThis.navigator.onLine);
 }
 
-export function isHex(s: string) {
+export function isHex(s: string): boolean{
   // 48-57 = 0-9
   // 65-90 = A-Z
   // 97-122 = a-z

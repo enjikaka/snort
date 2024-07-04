@@ -1,5 +1,5 @@
-import { bytesToHex } from "@noble/hashes/utils";
-import { decode as invoiceDecode } from "light-bolt11-decoder";
+import { bytesToHex } from "npm:@noble/hashes@1.4.0/utils";
+import { Section, decode as invoiceDecode } from "npm:light-bolt11-decoder@3.1.1";
 
 export interface InvoiceDetails {
   amount?: number;
@@ -16,17 +16,17 @@ export function decodeInvoice(pr: string): InvoiceDetails | undefined {
   try {
     const parsed = invoiceDecode(pr);
 
-    const amountSection = parsed.sections.find(a => a.name === "amount");
+    const amountSection = parsed.sections.find((a: Section) => a.name === "amount");
     const amount = amountSection ? Number(amountSection.value as number | string) : undefined;
 
-    const timestampSection = parsed.sections.find(a => a.name === "timestamp");
+    const timestampSection = parsed.sections.find((a: Section) => a.name === "timestamp");
     const timestamp = timestampSection ? Number(timestampSection.value as number | string) : undefined;
 
-    const expirySection = parsed.sections.find(a => a.name === "expiry");
+    const expirySection = parsed.sections.find((a: Section) => a.name === "expiry");
     const expire = expirySection ? Number(expirySection.value as number | string) : undefined;
-    const descriptionSection = parsed.sections.find(a => a.name === "description")?.value;
-    const descriptionHashSection = parsed.sections.find(a => a.name === "description_hash")?.value;
-    const paymentHashSection = parsed.sections.find(a => a.name === "payment_hash")?.value;
+    const descriptionSection = parsed.sections.find((a: Section) => a.name === "description")?.value;
+    const descriptionHashSection = parsed.sections.find((a: Section) => a.name === "description_hash")?.value;
+    const paymentHashSection = parsed.sections.find((a: Section) => a.name === "payment_hash")?.value;
     const ret = {
       pr,
       amount: amount,
