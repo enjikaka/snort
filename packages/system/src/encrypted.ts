@@ -25,7 +25,7 @@ export abstract class KeyStorage {
   /**
    * Get a payload object which can be serialized to JSON
    */
-  abstract toPayload(): Object;
+  abstract toPayload(): object;
 
   /**
    * Create a key storage class from its payload
@@ -110,7 +110,7 @@ export class NotEncrypted extends KeyStorage {
     return false;
   }
 
-  override unlock(code: string): Promise<void> {
+  override unlock(_code: string): Promise<void> {
     throw new Error("Method not implemented.");
   }
 

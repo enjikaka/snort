@@ -37,7 +37,7 @@ export function expandFilter(f: ReqFilter): Array<FlatReqFilter> {
     constants: { [key: string]: string | number | undefined },
     resultId: string,
   ) {
-    let filterObject = { ...Object.fromEntries(combination), ...constants } as FlatReqFilter;
+    const filterObject = { ...Object.fromEntries(combination), ...constants } as FlatReqFilter;
     filterObject.resultSetId = resultId;
     return filterObject;
   }

@@ -20,10 +20,8 @@ export interface ConnectionTypeEvents {
   disconnect: (code: number) => void;
   auth: (challenge: string, relay: string, cb: (ev: NostrEvent) => void) => void;
   notice: (msg: string) => void;
-  unknownMessage: (obj: Array<any>) => void;
+  unknownMessage: (obj: Array<unknown>) => void;
 }
-
-export interface ConnectionSubscription {}
 
 /**
  * Basic relay connection

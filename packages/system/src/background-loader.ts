@@ -65,7 +65,7 @@ export abstract class BackgroundLoader<T extends { loaded: number; created: numb
   /**
    * Get object from cache or fetch if missing
    */
-  async fetch(key: string): Promise<any> {
+  async fetch(key: string): Promise<T | undefined> {
     const existing = this.cache.get(key);
     if (existing) {
       return existing;

@@ -60,7 +60,7 @@ export function mapEventToProfile(ev: NostrEvent): CachedMetadata | undefined {
   if (ev.kind !== 0) return;
   try {
     const data: UserMetadata = JSON.parse(ev.content);
-    let ret = {
+    const ret = {
       ...data,
       pubkey: ev.pubkey,
       npub: hexToBech32("npub", ev.pubkey),
