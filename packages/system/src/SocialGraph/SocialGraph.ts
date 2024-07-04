@@ -109,7 +109,7 @@ export default class SocialGraph {
       }
       const distance = this.followDistanceByUser.get(userId);
       return distance === undefined ? 1000 : distance;
-    } catch (e) {
+    } catch (_e) {
       // might not be logged in or sth
       return 1000;
     }

@@ -1,4 +1,4 @@
-import { EventBuilder, type EventSigner, type NostrEvent, type NostrLink, type NotSignedNostrEvent, type SystemInterface, type Tag } from "../index.ts";
+import { EventBuilder, type EventSigner, type NostrEvent, type NostrLink, type NotSignedNostrEvent, type SystemInterface } from "../index.ts";
 import { SafeSync, type SafeSyncEvents } from "./safe-sync.ts";
 import debug from "npm:debug@4.3.5";
 import { EventEmitter } from "npm:eventemitter3@5.0.1";

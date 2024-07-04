@@ -2,7 +2,7 @@ import debug from "debug";
 import { EventEmitter } from "npm:eventemitter3@5.0.1";
 import { unixNowMs, unwrap } from "@enjikaka/snort-shared";
 
-import { type ReqFilter, Nips, type TaggedNostrEvent, type SystemInterface, type ParsedFragment } from "./index.ts";
+import { type ReqFilter, Nips, type TaggedNostrEvent, type SystemInterface } from "./index.ts";
 import { NoteCollection } from "./note-collection.ts";
 import type { BuiltRawReqFilter, RequestBuilder } from "./request-builder.ts";
 import { eventMatchesFilter } from "./request-matcher.ts";
@@ -342,7 +342,7 @@ export class Query extends EventEmitter<QueryEvents> {
     }
   }
 
-  async #emitFilters() {
+  #emitFilters() {
     this.#log("Starting emit of %s", this.id);
     const existing = this.filters;
     if (!(this.request.options?.skipDiff ?? false) && existing.length > 0) {
@@ -402,10 +402,10 @@ export class Query extends EventEmitter<QueryEvents> {
   }
 
   #sendQueryInternal(c: ConnectionType, q: BuiltRawReqFilter) {
-    let filters = q.filters;
+    const filters = q.filters;
     const qt = new QueryTrace(c.address, filters, c.id);
     qt.on("close", x => c.closeRequest(x));
-    qt.on("eose", (id, connId, forced) => {
+    qt.on("eose", (id, _connId, forced) => {
       this.emit("trace", {
         id,
         conn: c,

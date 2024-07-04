@@ -93,6 +93,8 @@ export class Nip46Signer extends EventEmitter<Nip46Events> implements EventSigne
     if (this.#insideSigner instanceof PrivateKeySigner) {
       return this.#insideSigner.privateKey;
     }
+
+    return undefined;
   }
 
   get isBunker(): boolean {
@@ -108,7 +110,7 @@ export class Nip46Signer extends EventEmitter<Nip46Events> implements EventSigne
     this.#localPubkey = await this.#insideSigner.getPubKey();
     return await new Promise<void>((resolve, reject) => {
       this.#conn = new Connection(this.#relay, { read: true, write: true });
-      this.#conn.on("event", async (sub, e) => {
+      this.#conn.on("event", async (_sub, e) => {
         await this.#onReply(e);
       });
       this.#conn.on("connected", async () => {
@@ -163,7 +165,7 @@ export class Nip46Signer extends EventEmitter<Nip46Events> implements EventSigne
     return rsp.result as Array<string>;
   }
 
-  async getPubKey(): Promise<string> {
+  getPubKey(): string {
     //const rsp = await this.#rpc("get_public_key", []);
     //return rsp.result as string;
     return this.#remotePubkey!;
@@ -179,16 +181,17 @@ export class Nip46Signer extends EventEmitter<Nip46Events> implements EventSigne
     return rsp.result as string;
   }
 
-  nip44Encrypt(content: string, key: string): Promise<string> {
+  nip44Encrypt(_content: string, _key: string): Promise<string> {
     throw new Error("Method not implemented.");
   }
 
-  nip44Decrypt(content: string, otherKey: string): Promise<string> {
+  nip44Decrypt(_content: string, _otherKey: string): Promise<string> {
     throw new Error("Method not implemented.");
   }
 
-  async sign(ev: NostrEvent): Promise<any> {
+  async sign(ev: NostrEvent): Promise<NostrEvent> {
     const rsp = await this.#rpc("sign_event", [JSON.stringify(ev)]);
+
     return JSON.parse(rsp.result as string);
   }
 
@@ -257,7 +260,7 @@ export class Nip46Signer extends EventEmitter<Nip46Events> implements EventSigne
     }
   }
 
-  async #rpc(method: string, params: Array<any>) {
+  async #rpc(method: string, params: Array<string>) {
     if (!this.#didInit) {
       await this.init();
     }
@@ -272,7 +275,7 @@ export class Nip46Signer extends EventEmitter<Nip46Events> implements EventSigne
     this.#sendCommand(payload, unwrap(this.#remotePubkey));
     return await new Promise<Nip46Response>((resolve, reject) => {
       this.#commandQueue.set(payload.id, {
-        resolve: async (o: Nip46Response) => {
+        resolve: (o: Nip46Response) => {
           resolve(o);
         },
         reject,

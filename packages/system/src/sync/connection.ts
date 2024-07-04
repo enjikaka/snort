@@ -4,7 +4,6 @@ import { NoteCollection } from "../note-collection.ts";
 import { RangeSync } from "./range-sync.ts";
 import { NegentropyFlow } from "../negentropy/negentropy-flow.ts";
 import type { SystemConfig } from "../system.ts";
-import type { EventEmitter } from "npm:eventemitter3@5.0.1";
 
 export interface ConnectionSyncModule {
   sync: (c: Connection, item: SyncCommand, cb?: () => void) => void;
@@ -36,7 +35,7 @@ export class DefaultSyncModule implements ConnectionSyncModule {
   }
 
   #fallbackSync(c: Connection, item: SyncCommand, cb?: () => void) {
-    const [type, id, eventSet, ...filters] = item;
+    const [type, id, _eventSet, ...filters] = item;
     if (type !== "SYNC") throw new Error("Must be a SYNC command");
 
     // if the event is replaceable there is no need to use any special sync query,
@@ -78,12 +77,12 @@ export class DefaultSyncModule implements ConnectionSyncModule {
   /**
    * Using the RangeSync class, sync data using fixed window size
    */
-  #syncRangeSync(c: Connection, item: SyncCommand, cb?: () => void) {
+  #syncRangeSync(c: Connection, item: SyncCommand, _cb?: () => void) {
     const [type, id, eventSet, ...filters] = item;
     if (type !== "SYNC") throw new Error("Must be a SYNC command");
 
     const rs = RangeSync.forFetcher(async (rb, cb) => {
-      return await new Promise((resolve, reject) => {
+      return await new Promise((resolve, _reject) => {
         const results = new NoteCollection();
         const f = rb.buildRaw();
         c.on("event", (c, e) => {

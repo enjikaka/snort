@@ -71,7 +71,7 @@ export class PrivateKeySigner implements EventSigner {
     );
   }
 
-  nip44Encrypt(content: string, key: string): Promise<any> {
+  nip44Encrypt(content: string, key: string): Promise<string> {
     const enc = new XChaCha20Encryptor();
     const shared = enc.getSharedSecret(this.#privateKey, key);
     const data = enc.encryptData(content, shared);

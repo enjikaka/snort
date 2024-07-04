@@ -34,15 +34,18 @@ export function mergeSimilar(filters: Array<ReqFilter>): Array<ReqFilter> {
  * @returns
  */
 export function simpleMerge(filters: Array<ReqFilter>) {
-  const result: any = {};
+  const result: Partial<ReqFilter> = {};
 
   filters.forEach(filter => {
     Object.entries(filter).forEach(([key, value]) => {
       if (Array.isArray(value)) {
         if (result[key] === undefined) {
+          // @ts-expect-error: Typing hard
           result[key] = [...value];
         } else {
-          const toAdd = (value as Array<any>).filter(a => !result[key].includes(a));
+          // @ts-expect-error: Typing hard
+          const toAdd = value.filter(a => !result[key].includes(a));
+          // @ts-expect-error: Typing hard
           result[key].push(...toAdd);
         }
       } else {
@@ -100,13 +103,18 @@ export function flatMerge(all: Array<FlatReqFilter>): Array<ReqFilter> {
           acc[k] = v;
         } else {
           acc[k] ??= [];
-          if (!acc[k].includes(v)) {
-            acc[k].push(v);
+          const acck = acc[k];
+          if (acck && Array.isArray(acck)) {
+            if (k === 'kinds') {
+              (acck as Array<number>).push(v as number);
+            } else {
+              (acck as Array<string>).push(v as string);
+            }
           }
         }
       });
       return acc;
-    }, {} as any) as ReqFilter;
+    }, {} as Partial<ReqFilter>) as ReqFilter;
   }
 
   // reducer, kinda verbose

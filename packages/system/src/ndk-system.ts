@@ -84,7 +84,7 @@ class NDKConnection extends EventEmitter<ConnectionTypeEvents> implements Connec
     } as OkResponse;
   }
 
-  async request(req: ReqCommand | SyncCommand, cbSent?: (() => void) | undefined) {
+  request(req: ReqCommand | SyncCommand, _cbSent?: (() => void) | undefined) {
     if (req[0] === "REQ") {
       const id = req[1];
       const filters = req.slice(2) as NDKFilter[];
@@ -104,14 +104,13 @@ class NDKConnection extends EventEmitter<ConnectionTypeEvents> implements Connec
         this.emit("event", id, ev.rawEvent() as TaggedNostrEvent);
       });
       sub.on("eose", () => {
-        debugger;
         this.emit("eose", id);
       });
       this.relay.subscribe(sub, filters);
     }
   }
 
-  closeRequest(id: string) {
+  closeRequest() {
     // idk..
   }
 }
@@ -121,9 +120,11 @@ class NDKConnectionPool extends DefaultConnectionPool<NDKConnection> {
     system: SystemInterface,
     readonly ndk: NDK,
   ) {
-    super(system, async (addr, opt, eph) => {
+    super(system, (addr, opt, eph) => {
       const relay = new NDKRelay(addr);
+
       this.ndk.pool.addRelay(relay);
+
       return new NDKConnection(this.ndk, relay, opt, eph);
     });
   }
@@ -188,7 +189,7 @@ export class NDKSystem extends SystemBase implements SystemInterface {
     this.#queryManager.on("request", (subId: string, f: BuiltRawReqFilter) => this.emit("request", subId, f));
   }
 
-  async Init(follows?: string[] | undefined) {
+  async Init() {
     await this.#ndk.connect();
   }
 

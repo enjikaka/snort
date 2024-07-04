@@ -1,15 +1,12 @@
-import { Connection } from "../src";
-import { describe, expect } from "@jest/globals";
-import { Query } from "../src/query";
-import { getRandomValues } from "crypto";
-import { FlatNoteStore } from "../src/note-collection";
-import { RequestStrategy } from "../src/request-builder";
-
-globalThis.crypto = {} as any;
-window.crypto.getRandomValues = getRandomValues as any;
+import { Connection } from "../src/index.ts";
+import { describe } from "@std/testing";
+import { assertEquals } from "@std/assert";
+import { Query } from "../src/query.ts";
+import { FlatNoteStore } from "../src/note-collection.ts";
+import { RequestStrategy } from "../src/request-builder.ts";
 
 describe("query", () => {
-  test("progress", () => {
+  Deno.test("progress", () => {
     const q = new Query("test", "", new FlatNoteStore());
     const opt = {
       read: true,
@@ -33,15 +30,15 @@ describe("query", () => {
     const qt2 = q.sendToRelay(c2, f);
     const qt3 = q.sendToRelay(c3, f);
 
-    expect(q.progress).toBe(0);
+    assertEquals(q.progress, 0);
     q.eose(qt1!.id, c1);
-    expect(q.progress).toBe(1 / 3);
+    assertEquals(q.progress, 1 / 3);
     q.eose(qt1!.id, c1);
-    expect(q.progress).toBe(1 / 3);
+    assertEquals(q.progress, 1 / 3);
     q.eose(qt2!.id, c2);
-    expect(q.progress).toBe(2 / 3);
+    assertEquals(q.progress, 2 / 3);
     q.eose(qt3!.id, c3);
-    expect(q.progress).toBe(1);
+    assertEquals(q.progress, 1);
 
     const qs = {
       relay: "",

@@ -131,10 +131,10 @@ export class NostrSystem extends SystemBase implements SystemInterface {
       this.userFollowsCache.preload(follows),
     ];
     await Promise.all(t);
-    await this.PreloadSocialGraph();
+    this.PreloadSocialGraph();
   }
 
-  async PreloadSocialGraph() {
+  PreloadSocialGraph() {
     // Insert data to socialGraph from cache
     if (this.config.buildFollowGraph) {
       for (const list of this.userFollowsCache.snapshot()) {

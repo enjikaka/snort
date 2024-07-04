@@ -207,7 +207,9 @@ export class Connection extends EventEmitter<ConnectionTypeEvents> implements Co
       this.ReconnectTimer = undefined;
       try {
         this.connect();
-      } catch {}
+      } catch {
+        // ignored
+      }
     }, this.ConnectTimeout);
   }
 
@@ -486,7 +488,7 @@ export class Connection extends EventEmitter<ConnectionTypeEvents> implements Co
       this.AwaitingAuth.delete(challenge);
     };
     this.AwaitingAuth.set(challenge, true);
-    const authEvent = await new Promise<NostrEvent>((resolve, reject) =>
+    const authEvent = await new Promise<NostrEvent>((resolve, _reject) =>
       this.emit("auth", challenge, this.address, resolve),
     );
     this.#log("Auth result: %o", authEvent);

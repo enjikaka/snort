@@ -1,5 +1,6 @@
 import { ID, type ReqFilter as Filter, STR, type TaggedNostrEvent, type UID } from "./index.ts";
 import loki from "npm:lokijs";
+import type { LokiQuery } from 'npm:@types/lokijs';
 import debug from "npm:debug@4.3.5";
 
 type PackedNostrEvent = {
@@ -109,7 +110,7 @@ class InMemoryDB {
 
     try {
       this.eventsCollection.insert(packed);
-    } catch (e) {
+    } catch (_e) {
       return false;
     }
 

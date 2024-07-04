@@ -194,7 +194,7 @@ function extractTagRefs(fragments: Fragment[], tags: Array<Array<string>>) {
                   type: "mention",
                   content: `nostr:${NostrLink.fromTag(tag).encode()}`,
                 } as ParsedFragment;
-              } catch (e) {
+              } catch (_e) {
                 // ignore
               }
             }

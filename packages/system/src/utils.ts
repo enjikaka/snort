@@ -1,6 +1,6 @@
 import { equalProp } from "@enjikaka/snort-shared";
 import type { FlatReqFilter } from "./query-optimizer/index.ts";
-import type { IMeta, NostrEvent, ReqFilter } from "./nostr.ts";
+import type { NostrEvent, ReqFilter } from "./nostr.ts";
 
 export function findTag(e: NostrEvent, tag: string) {
   const maybeTag = e.tags.find(evTag => {
@@ -52,8 +52,9 @@ export function splitByUrl(str: string) {
 }
 
 export function getHex64(json: string, field: string): string {
-  let len = field.length + 3;
-  let idx = json.indexOf(`"${field}":`) + len;
-  let s = json.slice(idx).indexOf(`"`) + idx + 1;
+  const len = field.length + 3;
+  const idx = json.indexOf(`"${field}":`) + len;
+  const s = json.slice(idx).indexOf(`"`) + idx + 1;
+
   return json.slice(s, s + 64);
 }

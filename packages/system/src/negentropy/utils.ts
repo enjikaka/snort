@@ -35,7 +35,7 @@ export function decodeVarInt(buf: Uint8Array | WrappedBuffer) {
 export function encodeVarInt(n: number) {
   if (n === 0) return new Uint8Array([0]);
 
-  let o = [];
+  const o = [];
   while (n !== 0) {
     o.push(n & 127);
     n >>>= 7;

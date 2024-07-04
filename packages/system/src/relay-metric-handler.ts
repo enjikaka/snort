@@ -38,7 +38,7 @@ export class RelayMetricHandler {
     }
   }
 
-  async onDisconnect(addr: string, code: number) {
+  async onDisconnect(addr: string, _code: number) {
     const v = await this.#cache.get(addr);
     if (v) {
       v.disconnects++;
