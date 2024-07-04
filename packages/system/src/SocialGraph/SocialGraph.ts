@@ -89,7 +89,7 @@ export default class SocialGraph {
             this.addFollower(user, author);
           }
         }
-      } catch (e) {
+      } catch (_e) {
         // might not be logged in or sth
       }
     });

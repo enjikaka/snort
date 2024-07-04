@@ -241,9 +241,9 @@ export class DefaultConnectionPool<T extends ConnectionType = Connection>
     if (existing) {
       return await existing.publish(ev);
     } else {
-      return await new Promise<OkResponse>(async (resolve, reject) => {
-        const c = await this.#connectionBuilder(address, { write: true, read: true }, true);
+      const c = await this.#connectionBuilder(address, { write: true, read: true }, true);
 
+      return await new Promise<OkResponse>((resolve, reject) => {
         const t = setTimeout(reject, 10_000);
         c.once("connected", async () => {
           clearTimeout(t);
