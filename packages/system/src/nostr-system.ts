@@ -1,4 +1,4 @@
-import debug from "npm:debug";
+import debug from "npm:debug@4.3.5";
 
 import { unixNowMs } from "@enjikaka/snort-shared";
 import { NostrEvent, TaggedNostrEvent, OkResponse } from "./nostr.ts";
