@@ -1,4 +1,3 @@
-import { v4 as uuid } from "npm:uuid@9.0.1";
 import debug from "npm:debug@4.3.5";
 import { default as IsoWebSocket } from "npm:isomorphic-ws@5.0.0";
 import { unixNowMs } from "@enjikaka/snort-shared";
@@ -66,7 +65,7 @@ export class Connection extends EventEmitter<ConnectionTypeEvents> implements Co
 
   constructor(addr: string, options: RelaySettings, ephemeral: boolean = false, syncModule?: ConnectionSyncModule) {
     super();
-    this.id = uuid();
+    this.id = crypto.randomUUID();
     this.address = addr;
     this.settings = options;
     this.EventsCallback = new Map();
@@ -135,7 +134,7 @@ export class Connection extends EventEmitter<ConnectionTypeEvents> implements Co
     try {
       const wasReconnect = this.Socket !== null;
       if (this.Socket) {
-        this.id = uuid();
+        this.id = crypto.randomUUID();
         if (this.isOpen) {
           this.Socket.close();
         }
@@ -419,7 +418,7 @@ export class Connection extends EventEmitter<ConnectionTypeEvents> implements Co
 
   #reset() {
     // reset connection Id on disconnect, for query-tracking
-    this.id = uuid();
+    this.id = crypto.randomUUID();
     this.#expectAuth = false;
     this.#log(
       "Reset active=%O, pending=%O, raw=%O",

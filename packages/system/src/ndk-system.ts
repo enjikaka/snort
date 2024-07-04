@@ -18,7 +18,6 @@ import { ProfileLoaderService } from "./profile-cache.ts";
 import { RequestRouter } from "./request-router.ts";
 import { RelayMetricHandler } from "./relay-metric-handler.ts";
 import { RelayInfo } from "./relay-info.ts";
-import { v4 as uuid } from "npm:uuid@9.0.1";
 import { QueryManager } from "./query-manager.ts";
 import debug from "npm:debug@4.3.5";
 
@@ -34,7 +33,7 @@ class NDKConnection extends EventEmitter<ConnectionTypeEvents> implements Connec
     ephemeral: boolean,
   ) {
     super();
-    this.#id = uuid();
+    this.#id = crypto.randomUUID();
     this.#settings = settings;
     this.#ephemeral = ephemeral;
   }

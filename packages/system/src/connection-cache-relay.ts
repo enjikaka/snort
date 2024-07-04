@@ -2,7 +2,6 @@ import { NostrEvent, OkResponse, ReqCommand, ReqFilter, TaggedNostrEvent } from 
 import { CacheRelay } from "./cache-relay.ts";
 import { Connection } from "./connection.ts";
 import { NoteCollection } from "./note-collection.ts";
-import { v4 as uuid } from "npm:uuid@9.0.1";
 
 /**
  * Use a regular connection as a CacheRelay
@@ -24,7 +23,7 @@ export class ConnectionCacheRelay implements CacheRelay {
   }
 
   query(req: ReqCommand): Promise<NostrEvent[]> {
-    const id = uuid();
+    const id = crypto.randomUUID();
     return new Promise((resolve, reject) => {
       const results = new NoteCollection();
       const evh = (s: string, e: TaggedNostrEvent) => {

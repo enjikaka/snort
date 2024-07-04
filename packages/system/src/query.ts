@@ -1,4 +1,3 @@
-import { v4 as uuid } from "npm:uuid@9.0.1";
 import debug from "debug";
 import { EventEmitter } from "npm:eventemitter3@5.0.1";
 import { unixNowMs, unwrap } from "@enjikaka/snort-shared";
@@ -32,7 +31,7 @@ export class QueryTrace extends EventEmitter<QueryTraceEvents> {
     readonly connId: string,
   ) {
     super();
-    this.id = uuid();
+    this.id = crypto.randomUUID();
     this.start = unixNowMs();
   }
 

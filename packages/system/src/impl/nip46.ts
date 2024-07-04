@@ -1,6 +1,5 @@
 import { unwrap, bech32ToHex } from "@enjikaka/snort-shared";
 import { secp256k1 } from "npm:@noble/curves@1.4.0/secp256k1";
-import { v4 as uuid } from "npm:uuid@9.0.1";
 import debug from "npm:debug@4.3.5";
 
 import { Connection } from "../connection.ts";
@@ -265,7 +264,7 @@ export class Nip46Signer extends EventEmitter<Nip46Events> implements EventSigne
     if (!this.#conn) throw new Error("Connection error");
 
     const payload = {
-      id: uuid(),
+      id: crypto.randomUUID(),
       method,
       params,
     } as Nip46Request;

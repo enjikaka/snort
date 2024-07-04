@@ -1,6 +1,5 @@
 import { unixNow } from "@enjikaka/snort-shared";
 import { ReqFilter, RequestBuilder, SystemInterface, TaggedNostrEvent } from "../index.ts";
-import { v4 as uuid } from "npm:uuid@9.0.1";
 import { EventEmitter } from "npm:eventemitter3@5.0.1";
 
 /**
@@ -17,7 +16,7 @@ interface RangeSyncEvents {
  * A simple time based sync for pulling lots of data from nostr
  */
 export class RangeSync extends EventEmitter<RangeSyncEvents> {
-  #id = uuid();
+  #id = crypto.randomUUID();
   #start: number = NostrBirthday;
   #windowSize: number = 60 * 60 * 12;
   #fetcher!: SystemInterface["Fetch"];
