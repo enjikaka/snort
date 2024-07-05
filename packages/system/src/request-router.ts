@@ -1,4 +1,4 @@
-import { unwrap } from "@enjikaka/snort-shared";
+import { unwrap } from "jsr:@enjikaka/snort-shared@^1.3.8";
 import type { NostrEvent, ReqFilter } from "./nostr.ts";
 import type { FlatReqFilter } from "./query-optimizer/index.ts";
 

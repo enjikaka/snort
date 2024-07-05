@@ -1,6 +1,6 @@
 import debug from "debug";
 import { EventEmitter } from "npm:eventemitter3@5.0.1";
-import { unixNowMs, unwrap } from "@enjikaka/snort-shared";
+import { unixNowMs, unwrap } from "jsr:@enjikaka/snort-shared@^1.3.8";
 
 import { type ReqFilter, Nips, type TaggedNostrEvent, type SystemInterface } from "./index.ts";
 import { NoteCollection } from "./note-collection.ts";

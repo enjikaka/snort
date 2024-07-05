@@ -1,5 +1,5 @@
 import { EventKind, type FullRelaySettings, type NostrEvent, type SystemInterface, type UsersRelays } from "../index.ts";
-import { removeUndefined, sanitizeRelayUrl } from "@enjikaka/snort-shared";
+import { removeUndefined, sanitizeRelayUrl } from "jsr:@enjikaka/snort-shared@^1.3.8";
 
 export const DefaultPickNRelays = 2;
 

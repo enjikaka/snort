@@ -1,4 +1,4 @@
-import { equalProp } from "@enjikaka/snort-shared";
+import { equalProp } from "jsr:@enjikaka/snort-shared@^1.3.8";
 import type { FlatReqFilter } from "./query-optimizer/index.ts";
 import type { NostrEvent, ReqFilter } from "./nostr.ts";
 

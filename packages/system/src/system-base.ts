@@ -1,4 +1,4 @@
-import type { CachedTable } from "@enjikaka/snort-shared";
+import type { CachedTable } from "jsr:@enjikaka/snort-shared@^1.3.8";
 import type { UsersRelays, CachedMetadata, RelayMetrics, UsersFollows } from "./cache/index.ts";
 import type { CacheRelay } from "./cache-relay.ts";
 import { EventsCache } from "./cache/events.ts";

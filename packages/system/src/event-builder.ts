@@ -1,6 +1,6 @@
 import { type EventKind, type HexKey, NostrPrefix, type NostrEvent, type EventSigner, type PowMiner } from "./index.ts";
 import { HashtagRegex, MentionNostrEntityRegex } from "./const.ts";
-import { getPublicKey, jitter, unixNow } from "@enjikaka/snort-shared";
+import { getPublicKey, jitter, unixNow } from "jsr:@enjikaka/snort-shared@^1.3.8";
 import { EventExt } from "./event-ext.ts";
 import { type NostrLink, tryParseNostrLink } from "./nostr-link.ts";
 

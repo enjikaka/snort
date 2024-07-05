@@ -1,5 +1,5 @@
 import type { NostrEvent } from "../nostr.ts";
-import { type DexieTableLike, FeedCache } from "@enjikaka/snort-shared";
+import { type DexieTableLike, FeedCache } from "jsr:@enjikaka/snort-shared@^1.3.8";
 
 export class EventsCache extends FeedCache<NostrEvent> {
   constructor(table?: DexieTableLike<NostrEvent>) {

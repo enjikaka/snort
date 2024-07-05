@@ -1,4 +1,4 @@
-import { distance } from "@enjikaka/snort-shared";
+import { distance } from "jsr:@enjikaka/snort-shared@^1.3.8";
 import type { ReqFilter } from "../index.ts";
 import type { FlatReqFilter } from "./index.ts";
 

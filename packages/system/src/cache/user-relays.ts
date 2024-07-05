@@ -1,5 +1,5 @@
 import type { UsersRelays } from "./index.ts";
-import { type DexieTableLike, FeedCache } from "@enjikaka/snort-shared";
+import { type DexieTableLike, FeedCache } from "jsr:@enjikaka/snort-shared@^1.3.8";
 
 export class UserRelaysCache extends FeedCache<UsersRelays> {
   constructor(table?: DexieTableLike<UsersRelays>) {

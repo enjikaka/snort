@@ -8,7 +8,7 @@ import {
   RequestBuilder,
   type SystemInterface,
 } from "../index.ts";
-import { unixNow } from "@enjikaka/snort-shared";
+import { unixNow } from "jsr:@enjikaka/snort-shared@^1.3.8";
 import debug from "npm:debug@4.3.5";
 import { EventEmitter } from "npm:eventemitter3@5.0.1";
 

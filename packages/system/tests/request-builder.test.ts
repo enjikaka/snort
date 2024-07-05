@@ -1,6 +1,6 @@
 import { RequestBuilder, RequestStrategy } from "../src/request-builder.ts";
 import { describe, expect } from "@jest/globals";
-import { type FeedCache, unixNow, } from "@enjikaka/snort-shared";
+import { type FeedCache, unixNow, } from "jsr:@enjikaka/snort-shared@^1.3.8";
 import { NostrSystem, type UsersRelays } from "../src/index.ts";
 
 const DummyCache = {
