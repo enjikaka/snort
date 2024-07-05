@@ -1,5 +1,5 @@
 import { removeUndefined, sanitizeRelayUrl, unwrap } from "jsr:@enjikaka/snort-shared@1.3.7";
-import debug from "debug";
+import debug from "npm:debug@4.3.5";
 import { EventEmitter } from "npm:eventemitter3@5.0.1";
 
 import { Connection, type RelaySettings, type SyncCommand } from "./connection.ts";

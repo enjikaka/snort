@@ -37,7 +37,6 @@
     "@noble/hashes": "^1.4.0",
     "@nostr-dev-kit/ndk": "^2.8.2",
     "@scure/base": "^1.1.6",
-    "@snort/shared": "^1.0.16",
     "@stablelib/xchacha20": "^1.0.1",
     "debug": "^4.3.4",
     "eventemitter3": "^5.0.1",
