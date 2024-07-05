@@ -1,4 +1,4 @@
-import { type WorkQueueItem, processWorkQueue, barrierQueue, unwrap } from "@enjikaka/snort-shared";
+import { type WorkQueueItem, processWorkQueue, barrierQueue, unwrap } from "jsr:@enjikaka/snort-shared@1.3.7";
 import type { EventSigner, NostrEvent } from "../index.ts";
 
 const Nip7Queue: Array<WorkQueueItem> = [];

@@ -1,4 +1,4 @@
-import { removeUndefined } from "@enjikaka/snort-shared";
+import { removeUndefined } from "jsr:@enjikaka/snort-shared@1.3.7";
 
 import {
   CashuRegex,

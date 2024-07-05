@@ -1,6 +1,6 @@
 import debug from "npm:debug@4.3.5";
 import { LRUCache } from "npm:lru-cache@10.2.2";
-import { decodeInvoice, type InvoiceDetails } from "@enjikaka/snort-shared";
+import { decodeInvoice, type InvoiceDetails } from "jsr:@enjikaka/snort-shared@1.3.7";
 import type { NostrEvent } from "../nostr.ts";
 import { findTag } from "../utils.ts";
 import { NostrLink } from "../nostr-link.ts";
