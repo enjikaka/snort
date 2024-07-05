@@ -1,0 +1,5 @@
+{
+  "name": "@enjikaka/snort-system",
+  "version": "1.4.0",
+  "exports": "./src/index.ts"
+}
