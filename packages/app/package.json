@@ -3,8 +3,8 @@
   "version": "0.2.0",
   "dependencies": {
     "@cashu/cashu-ts": "^1.0.0-rc.3",
-    "@enjikaka/snort-shared": "workspace:packages/shared",
-    "@enjikaka/snort-system": "workspace:packages/system",
+    "@enjikaka/snort-shared": "workspace:*",
+    "@enjikaka/snort-system": "workspace:*",
     "@here/maps-api-for-javascript": "^1.50.0",
     "@noble/curves": "^1.4.0",
     "@noble/hashes": "^1.4.0",
