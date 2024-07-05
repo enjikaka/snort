@@ -18,7 +18,7 @@ jobs:
           deno-version: v1.x
       - run: deno cache --node-modules-dir src/index.ts
         working-directory: ./packages/shared
-      - run: npx jsr publish
+      - run: deno publish
         working-directory: ./packages/shared
   publish_system:
     runs-on: ubuntu-latest
@@ -32,5 +32,5 @@ jobs:
           deno-version: v1.x
       - run: deno cache --node-modules-dir src/index.ts
         working-directory: ./packages/system
-      - run: npx jsr publish
+      - run: deno publish
         working-directory: ./packages/system
