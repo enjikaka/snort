@@ -14,5 +14,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - run: yarn
+        working-directory: ./packages/system
       - run: npx jsr publish
         working-directory: ./packages/system
