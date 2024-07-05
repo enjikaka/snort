@@ -1,4 +1,4 @@
-import { type CachedTable, unixNowMs } from "jsr:@enjikaka/snort-shared@1.3.7";
+import { type CachedTable, unixNowMs } from "@enjikaka/snort-shared";
 import type { RelayMetrics } from "./cache/index.ts";
 import type { TraceReport } from "./query.ts";
 

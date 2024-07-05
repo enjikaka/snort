@@ -1,6 +1,6 @@
 import debug from "npm:debug@4.3.5";
 
-import { unixNowMs } from "jsr:@enjikaka/snort-shared@1.3.7";
+import { unixNowMs } from "@enjikaka/snort-shared";
 import type { NostrEvent, TaggedNostrEvent, OkResponse } from "./nostr.ts";
 import type { RelaySettings } from "./connection.ts";
 import type { BuiltRawReqFilter, RequestBuilder } from "./request-builder.ts";

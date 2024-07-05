@@ -1,4 +1,4 @@
-import { unixNowMs } from "jsr:@enjikaka/snort-shared@1.3.7";
+import { unixNowMs } from "@enjikaka/snort-shared";
 import { EventKind, type TaggedNostrEvent, RequestBuilder } from "./index.ts";
 import { ProfileCacheExpire } from "./const.ts";
 import { mapEventToProfile, type CachedMetadata } from "./cache/index.ts";

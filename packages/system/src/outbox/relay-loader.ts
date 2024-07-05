@@ -1,5 +1,5 @@
 import { EventKind, RequestBuilder, type TaggedNostrEvent, type UsersRelays } from "../index.ts";
-import { unixNowMs } from "jsr:@enjikaka/snort-shared@1.3.7";
+import { unixNowMs } from "@enjikaka/snort-shared";
 import { RelayListCacheExpire } from "../const.ts";
 import { BackgroundLoader } from "../background-loader.ts";
 import { parseRelaysFromKind } from "./index.ts";

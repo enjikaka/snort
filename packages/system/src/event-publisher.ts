@@ -1,6 +1,6 @@
 import * as secp from "npm:@noble/curves@1.4.0/secp256k1";
 import * as utils from "npm:@noble/curves@1.4.0/abstract/utils";
-import { unwrap } from "jsr:@enjikaka/snort-shared@1.3.7";
+import { unwrap } from "@enjikaka/snort-shared";
 
 import {
   decodeEncryptionPayload,
